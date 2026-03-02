@@ -1,277 +1,686 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Embit Ignite | Core & Pro</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0b0d13;
-      --text: #f6f8ff;
-      --muted: #adb4cc;
-      --line: rgba(255, 255, 255, 0.14);
-      --accent: #00ffa3;
-      --accent-2: #00d9ff;
-      --surface: rgba(255, 255, 255, 0.04);
-      --surface-2: rgba(255, 255, 255, 0.02);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Embit Ignite | Production Flutter Foundation</title>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    body {
-      font-family: 'Manrope', sans-serif;
-      color: var(--text);
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 8% -2%, rgba(0, 255, 163, 0.2), transparent 32%),
-        radial-gradient(circle at 93% 18%, rgba(0, 217, 255, 0.14), transparent 34%),
-        linear-gradient(180deg, #0a0d14 0%, #0d111a 100%);
-      line-height: 1.6;
-      letter-spacing: 0.01em;
-    }
+<style>
+:root {
+  --bg:#0b0d13;
+  --text:#f6f8ff;
+  --muted:#adb4cc;
+  --line:rgba(255,255,255,0.14);
+  --accent:#00ffa3;
+  --accent2:#00d9ff;
+  --surface:rgba(255,255,255,0.04);
+  --surface2:rgba(255,255,255,0.02);
+}
 
-    .wrap {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 2rem 1.2rem 4rem;
-    }
+*{box-sizing:border-box;margin:0;padding:0}
 
-    .top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
+html{scroll-behavior:smooth}
 
-    .logo {
-      font-family: 'JetBrains Mono', monospace;
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-    }
+body{
+  font-family:'Manrope',sans-serif;
+  color:var(--text);
+  background:
+  radial-gradient(circle at 8% -2%, rgba(0,255,163,0.18), transparent 32%),
+  radial-gradient(circle at 93% 18%, rgba(0,217,255,0.12), transparent 34%),
+  linear-gradient(180deg,#0a0d14 0%,#0d111a 100%);
+  min-height:100vh;
+  line-height:1.6;
+  overflow-x:hidden;
+}
 
-    .back {
-      color: var(--muted);
-      text-decoration: none;
-      border: 1px solid var(--line);
-      background: var(--surface-2);
-      padding: 0.55rem 0.9rem;
-      border-radius: 10px;
-      transition: all 0.2s ease;
-    }
+.wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:3rem 1.5rem;
+}
 
-    .back:hover {
-      color: var(--text);
-      border-color: rgba(0, 255, 163, 0.45);
-    }
+/* Header */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:4rem;
+  position:relative;
+  z-index:10;
+}
 
-    .hero {
-      background: linear-gradient(145deg, rgba(0, 255, 163, 0.1), rgba(0, 217, 255, 0.07));
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.34);
-      margin-bottom: 1.3rem;
-    }
+.logo{
+  font-family:'Space Mono',monospace;
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:700;
+  font-size:1.3rem;
+  letter-spacing:0.08em;
+  transition:all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 
-    .badge {
-      display: inline-block;
-      background: rgba(0, 255, 163, 0.12);
-      color: var(--accent);
-      border: 1px solid rgba(0, 255, 163, 0.45);
-      padding: 0.35rem 0.8rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin-bottom: 0.9rem;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-    }
+.logo:hover{
+  transform:scale(1.08);
+  text-shadow:0 0 20px rgba(0,255,163,0.4);
+}
 
-    h1 {
-      font-size: clamp(2rem, 4.2vw, 3rem);
-      margin-bottom: 0.8rem;
-      letter-spacing: -0.015em;
-      line-height: 1.08;
-    }
+.back{
+  color:var(--muted);
+  text-decoration:none;
+  border:1px solid var(--line);
+  padding:0.6rem 1rem;
+  border-radius:10px;
+  font-size:0.9rem;
+  transition:all 0.3s ease;
+  backdrop-filter:blur(10px);
+}
 
-    .sub {
-      color: var(--muted);
-      max-width: 850px;
-    }
+.back:hover{
+  border-color:var(--accent2);
+  color:var(--accent2);
+  background:rgba(0,217,255,0.08);
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(280px, 1fr));
-      gap: 1rem;
-      margin-top: 1.4rem;
-    }
+/* Hero */
+.hero{
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:3.5rem 2.5rem;
+  margin-bottom:3rem;
+  background:linear-gradient(145deg,rgba(0,255,163,0.08),rgba(0,217,255,0.06));
+  box-shadow:0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+  position:relative;
+  overflow:hidden;
+}
 
-    .card {
-      background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 1.4rem;
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
-    }
+.hero::before{
+  content:"";
+  position:absolute;
+  top:-50%;
+  right:-10%;
+  width:400px;
+  height:400px;
+  background:radial-gradient(circle, rgba(0,217,255,0.08), transparent);
+  border-radius:50%;
+  filter:blur(60px);
+  pointer-events:none;
+}
 
-    .card.pro {
-      border-color: rgba(0, 217, 255, 0.52);
-      background: linear-gradient(180deg, rgba(0, 217, 255, 0.14), rgba(255, 255, 255, 0.03));
-    }
+.hero.dark{
+  background:linear-gradient(145deg,rgba(0,255,163,0.04),rgba(0,217,255,0.03));
+}
 
-    .plan {
-      font-size: 0.82rem;
-      color: var(--accent);
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+.badge{
+  display:inline-block;
+  background:linear-gradient(135deg,rgba(0,255,163,0.15),rgba(0,217,255,0.1));
+  border:1px solid rgba(0,255,163,0.4);
+  color:var(--accent);
+  padding:0.4rem 1rem;
+  border-radius:999px;
+  font-size:0.75rem;
+  font-weight:700;
+  letter-spacing:0.1em;
+  margin-bottom:1.2rem;
+  text-transform:uppercase;
+  animation:fadeInDown 0.8s ease-out;
+}
 
-    .price {
-      font-size: 2rem;
-      font-weight: 800;
-      margin: 0.35rem 0 0.45rem;
-    }
+@keyframes fadeInDown{
+  from{
+    opacity:0;
+    transform:translateY(-20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
 
-    .desc {
-      color: var(--muted);
-      margin-bottom: 0.8rem;
-    }
+h1{
+  font-size:clamp(2.2rem,5vw,3.8rem);
+  margin-bottom:1rem;
+  line-height:1.15;
+  font-weight:800;
+  animation:fadeInUp 1s ease-out 0.15s both;
+  background:linear-gradient(135deg,var(--text),var(--muted));
+  background-clip:text;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
-    ul {
-      list-style: none;
-      display: grid;
-      gap: 0.45rem;
-    }
+h2{
+  font-size:clamp(1.8rem,3.5vw,2.4rem);
+  margin-bottom:1rem;
+  line-height:1.2;
+  font-weight:700;
+  animation:fadeInUp 1s ease-out 0.2s both;
+}
 
-    li {
-      color: #e3e9fc;
-    }
+@keyframes fadeInUp{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
 
-    li::before {
-      content: '• ';
-      color: var(--accent-2);
-    }
+.sub{
+  color:var(--muted);
+  font-size:1.05rem;
+  line-height:1.8;
+  animation:fadeInUp 1s ease-out 0.3s both;
+  max-width:700px;
+}
 
-    .note {
-      margin-top: 1.2rem;
-      border-left: 3px solid var(--accent);
-      background: rgba(0, 255, 163, 0.08);
-      padding: 0.95rem 1rem;
-      color: var(--muted);
-      border-radius: 8px;
-    }
+.hero p, .hero ul{
+  position:relative;
+  z-index:1;
+}
 
-    .actions {
-      margin-top: 1.2rem;
-      display: flex;
-      gap: 0.7rem;
-      flex-wrap: wrap;
-    }
+/* Stats */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:1.5rem;
+  margin-top:2.5rem;
+}
 
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-      padding: 0.8rem 1rem;
-      border-radius: 10px;
-      font-weight: 700;
-      transition: all 0.2s ease;
-      border: 1px solid transparent;
-    }
+.stat{
+  padding:1.5rem;
+  background:rgba(0,255,163,0.05);
+  border:1px solid rgba(0,255,163,0.2);
+  border-radius:12px;
+  backdrop-filter:blur(10px);
+  animation:fadeInUp 1s ease-out 0.4s both;
+}
 
-    .btn.primary {
-      background: linear-gradient(135deg, #00ffa3, #11df9d);
-      color: #07130f;
-      box-shadow: 0 10px 24px rgba(0, 255, 163, 0.26);
-    }
+.stat-number{
+  font-size:2rem;
+  font-weight:800;
+  color:var(--accent);
+  font-family:'Space Mono',monospace;
+  margin-bottom:0.3rem;
+}
 
-    .btn.secondary {
-      color: var(--text);
-      border-color: var(--line);
-      background: var(--surface-2);
-    }
+.stat-label{
+  font-size:0.85rem;
+  color:var(--muted);
+}
 
-    .btn:hover {
-      transform: translateY(-2px);
-    }
+/* Grid */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:1.8rem;
+  margin-bottom:3rem;
+}
 
-    @media (max-width: 760px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+.card{
+  background:linear-gradient(180deg,var(--surface),var(--surface2));
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:2rem;
+  box-shadow:0 14px 34px rgba(0,0,0,0.3);
+  position:relative;
+  overflow:hidden;
+  transition:all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor:pointer;
+  animation:fadeInUp 1s ease-out 0.5s both;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(0,255,163,0.3),transparent);
+  opacity:0;
+  transition:opacity 0.4s ease;
+}
+
+.card:hover::before{
+  opacity:1;
+}
+
+.card:hover{
+  border-color:rgba(0,255,163,0.5);
+  transform:translateY(-8px);
+  box-shadow:0 20px 50px rgba(0,255,163,0.1), 0 0 40px rgba(0,255,163,0.05);
+}
+
+.card.pro{
+  border-color:rgba(0,217,255,0.6);
+  background:linear-gradient(180deg,rgba(0,217,255,0.16),rgba(255,255,255,0.035));
+  box-shadow:0 20px 50px rgba(0,217,255,0.15);
+}
+
+.card.pro:hover{
+  border-color:rgba(0,217,255,0.8);
+  box-shadow:0 25px 60px rgba(0,217,255,0.2), 0 0 50px rgba(0,217,255,0.08);
+  transform:translateY(-12px);
+}
+
+.plan{
+  font-size:0.8rem;
+  font-weight:700;
+  letter-spacing:0.1em;
+  color:var(--accent);
+  text-transform:uppercase;
+  display:inline-block;
+  margin-bottom:0.5rem;
+}
+
+.price{
+  font-size:2.8rem;
+  font-weight:800;
+  margin:0.8rem 0;
+  font-family:'Space Mono',monospace;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  background-clip:text;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.price-period{
+  color:var(--muted);
+  font-size:0.95rem;
+  font-weight:400;
+}
+
+.desc{
+  color:var(--muted);
+  margin-bottom:1.5rem;
+  font-size:1rem;
+  line-height:1.7;
+}
+
+ul{
+  list-style:none;
+  display:grid;
+  gap:0.8rem;
+  margin-bottom:1.8rem;
+}
+
+li{
+  display:flex;
+  align-items:flex-start;
+  gap:0.8rem;
+  font-size:0.95rem;
+  color:var(--text);
+  line-height:1.6;
+}
+
+li::before{
+  content:"✓";
+  color:var(--accent);
+  font-weight:700;
+  flex-shrink:0;
+  margin-top:2px;
+}
+
+.card-footer{
+  padding-top:1.5rem;
+  border-top:1px solid var(--line);
+  margin-top:1.5rem;
+}
+
+/* Code Block */
+.code-block{
+  background:rgba(0,0,0,0.3);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:1.8rem;
+  margin-top:1.5rem;
+  overflow-x:auto;
+}
+
+pre{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.85rem;
+  color:#c7d2ff;
+  line-height:1.7;
+  margin:0;
+}
+
+/* Buttons */
+.actions{
+  margin-top:2.5rem;
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+  animation:fadeInUp 1s ease-out 0.6s both;
+}
+
+.btn{
+  padding:1rem 1.8rem;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:700;
+  border:1px solid transparent;
+  font-size:1rem;
+  transition:all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.btn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);
+  opacity:0;
+  transition:opacity 0.3s ease;
+  pointer-events:none;
+}
+
+.btn:hover::before{
+  opacity:1;
+}
+
+.btn.primary{
+  background:linear-gradient(135deg,#00ffa3,#11df9d);
+  color:#05110d;
+  box-shadow:0 12px 32px rgba(0,255,163,0.3);
+  font-weight:800;
+}
+
+.btn.primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 48px rgba(0,255,163,0.4);
+}
+
+.btn.primary:active{
+  transform:translateY(0);
+}
+
+.btn.secondary{
+  background:rgba(0,217,255,0.1);
+  border-color:rgba(0,217,255,0.5);
+  color:var(--accent2);
+}
+
+.btn.secondary:hover{
+  background:rgba(0,217,255,0.2);
+  border-color:var(--accent2);
+  box-shadow:0 10px 28px rgba(0,217,255,0.15);
+  transform:translateY(-2px);
+}
+
+/* Note */
+.note{
+  margin-top:2rem;
+  color:var(--muted);
+  font-size:0.95rem;
+  line-height:1.7;
+  max-width:600px;
+  animation:fadeInUp 1s ease-out 0.7s both;
+}
+
+.note-highlight{
+  color:var(--accent);
+  font-weight:600;
+}
+
+/* Comparison */
+.comparison{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:2rem;
+  margin:2rem 0;
+}
+
+.comparison-item{
+  padding:1.5rem;
+  background:rgba(0,255,163,0.04);
+  border-left:3px solid var(--accent);
+  border-radius:8px;
+}
+
+.comparison-item h4{
+  color:var(--accent);
+  margin-bottom:0.5rem;
+  font-size:0.95rem;
+}
+
+.comparison-item p{
+  color:var(--muted);
+  font-size:0.9rem;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .wrap{
+    padding:2rem 1.2rem;
+  }
+  
+  .grid{
+    grid-template-columns:1fr;
+  }
+  
+  .comparison{
+    grid-template-columns:1fr;
+  }
+  
+  .hero{
+    padding:2.5rem 1.8rem;
+  }
+  
+  h1{
+    font-size:2rem;
+  }
+  
+  h2{
+    font-size:1.5rem;
+  }
+}
+
+@media(max-width:640px){
+  .header{
+    flex-direction:column;
+    gap:1rem;
+    margin-bottom:2rem;
+  }
+  
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+  
+  .actions{
+    flex-direction:column;
+  }
+  
+  .btn{
+    width:100%;
+    text-align:center;
+  }
+}
+</style>
 </head>
 
 <body>
-  <main class="wrap">
-    <div class="top">
-      <a class="logo" href="../">EMBIT.labs</a>
-      <a class="back" href="../">Back to Home</a>
+<main class="wrap">
+
+<header class="header">
+  <a class="logo" href="/">EMBIT.labs</a>
+  <a class="back" href="/">Back</a>
+</header>
+
+<!-- Main Hero -->
+<section class="hero">
+  <span class="badge">Ignite Kit</span>
+  <h1>Ship Flutter apps 5× faster.</h1>
+  <p class="sub">
+    Ignite gives you a production-ready Clean Architecture foundation with fully wired authentication,
+    routing, dependency injection, and scalable structure — from day one. No more rebuilding the same boilerplate for every project.
+  </p>
+  
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">18h</div>
+      <div class="stat-label">Setup Time Saved</div>
     </div>
-
-    <section class="hero">
-      <span class="badge">Ignite Kit</span>
-      <h1>Embit Ignite: clean architecture, ready to ship faster</h1>
-      <p class="sub">Ignite is your Flutter foundation kit. Core gives beginners and startup builders a stable starting
-        point. Pro gives experienced developers less boilerplate and deeper pre-wiring so they can ship production
-        features quickly.</p>
-    </section>
-
-    <section class="grid">
-      <article class="card">
-        <p class="plan">Ignite Core</p>
-        <p class="price">$19</p>
-        <p class="desc">Best for beginners, freelancers, and early-stage builders who need structure without complexity.
-        </p>
-        <ul>
-          <li>Clean Architecture folder setup</li>
-          <li>BLoC + dependency injection baseline</li>
-          <li>Basic auth flow (login/signup)</li>
-          <li>Starter profile UI</li>
-          <li>RBAC starter roles</li>
-          <li>Solid base for first MVP iterations</li>
-        </ul>
-      </article>
-
-      <article class="card pro">
-        <p class="plan">Ignite Pro</p>
-        <p class="price">$39</p>
-        <p class="desc">Built for developers shipping real products who want advanced methods and significantly less
-          manual wiring.</p>
-        <ul>
-          <li>Everything in Ignite Core</li>
-          <li>Complete profile UI wiring</li>
-          <li>Profile-related modules completed</li>
-          <li>Expanded auth and profile integration</li>
-          <li>More advanced architecture methods</li>
-          <li>Reduced boilerplate to move faster to features</li>
-        </ul>
-      </article>
-    </section>
-
-    <p class="note">Positioning: Core helps you learn and launch quickly. Pro is focused on developers who need to ship
-      products with cleaner workflow, less repetitive setup, and stronger pre-built architecture.</p>
-
-    <div class="actions">
-      <a class="btn primary" href="#">Get Ignite Core - $19</a>
-      <a class="btn primary" href="#">Get Ignite Pro - $39</a>
-      <a class="btn secondary" href="../nexus/">Explore Nexus</a>
-      <a class="btn secondary" href="../engine/">Explore Engine</a>
+    <div class="stat">
+      <div class="stat-number">0</div>
+      <div class="stat-label">Architecture Debates</div>
     </div>
-  </main>
+    <div class="stat">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Production Ready</div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="grid">
+
+  <article class="card">
+    <p class="plan">Ignite Core</p>
+    <p class="price">$59</p>
+    <p class="price-period">One-time purchase</p>
+    <p class="desc">
+      Perfect for solo developers and small teams shipping their first production app with confidence.
+    </p>
+    
+    <ul>
+      <li>Modular Clean Architecture (data/domain/presentation)</li>
+      <li>BLoC + GetIt dependency injection</li>
+      <li>Email + OTP authentication</li>
+      <li>Secure token persistence</li>
+      <li>Structured API layer</li>
+      <li>Error mapping system</li>
+      <li>go_router with scaling</li>
+      <li>Role-based route guards</li>
+      <li>Dark/Light theme system</li>
+      <li>Code generator</li>
+    </ul>
+
+    <div class="card-footer">
+      <a class="btn primary" href="#" style="width:100%;text-align:center;">Get Ignite Core</a>
+    </div>
+  </article>
+
+  <article class="card pro">
+    <div style="margin-bottom:1rem;">
+      <span class="badge" style="background:linear-gradient(135deg,rgba(0,217,255,0.15),rgba(0,217,255,0.1));border-color:rgba(0,217,255,0.6);color:#00d9ff;">
+        ⭐ Most Popular
+      </span>
+    </div>
+    <p class="plan">Ignite Pro</p>
+    <p class="price">$79</p>
+    <p class="price-period">One-time purchase</p>
+    <p class="desc">
+      For serious builders who want production features baked in and zero architecture friction. Launch faster, scale confidently.
+    </p>
+    
+    <ul>
+      <li>✓ Everything in Ignite Core</li>
+      <li>Fully wired profile module</li>
+      <li>Advanced auth integration</li>
+      <li>Generic result wrapper pattern</li>
+      <li>API response standard models</li>
+      <li>Centralized failure system</li>
+      <li>Form validation structure</li>
+      <li>Pagination-ready setup</li>
+      <li>Advanced code generator</li>
+      <li>Reusable base classes</li>
+    </ul>
+
+    <div class="card-footer">
+      <a class="btn primary" href="#" style="width:100%;text-align:center;">Get Ignite Pro</a>
+    </div>
+  </article>
+
+</section>
+
+<!-- Architecture Section -->
+<section class="hero dark">
+  <span class="badge">Architecture Preview</span>
+  <h2>Designed for real production workflows.</h2>
+  <div class="code-block">
+    <pre>lib/
+ ├─ core/
+ │   ├─ network/          → API + interceptors
+ │   ├─ error/            → Exception handling
+ │   ├─ router/           → Route guards + navigation
+ │   ├─ theme/            → Dark/light themes
+ │   └─ di/               → Dependency injection
+ ├─ features/             → Modular by feature
+ │   ├─ auth/
+ │   │   ├─ data/
+ │   │   ├─ domain/
+ │   │   └─ presentation/
+ │   ├─ profile/
+ │   └─ [your features]
+ └─ shared/               → Reusable components</pre>
+  </div>
+</section>
+
+<!-- Problem Section -->
+<section class="hero dark">
+  <span class="badge">The Problem</span>
+  <h2>Every Flutter project wastes 12–18 hours on setup.</h2>
+  <p class="sub">
+    You've probably done this dance before:
+  </p>
+  
+  <div class="comparison">
+    <div class="comparison-item">
+      <h4>❌ Without Ignite</h4>
+      <p>Spend days setting up folders, wiring BLoC, configuring DI, writing auth flows, handling errors. Then do it all again for the next client.</p>
+    </div>
+    <div class="comparison-item">
+      <h4>✓ With Ignite</h4>
+      <p>Start building features in 30 minutes. Everything is wired. Architecture decisions are made. Focus on business logic.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Time Saved Section -->
+<section class="hero">
+  <span class="badge">Impact</span>
+  <h2>Start building features in under 30 minutes.</h2>
+  <p class="sub">
+    No more repetitive setup. No more architectural second-guessing. No more "should I structure this this way?" debates.
+    Your codebase is production-ready from project one. Your team stays focused. Your client gets features faster.
+  </p>
+  
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">30m</div>
+      <div class="stat-label">To First Feature</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">5×</div>
+      <div class="stat-label">Faster Shipping</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Scalability Built In</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="actions">
+  <a class="btn primary" href="#">Get Ignite Core - $59</a>
+  <a class="btn primary" href="#">Get Ignite Pro - $79</a>
+  <a class="btn secondary" href="/nexus">Explore Nexus</a>
+</div>
+
+<p class="note">
+  <span class="note-highlight">Clean. Documented. Scalable.</span> Built for real production workflows. Used by teams shipping real apps. No more guessing. No more waste.
+</p>
+
+</main>
 </body>
-
 </html>
