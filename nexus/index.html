@@ -1,1321 +1,599 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Embit Nexus | Enterprise SaaS Architecture Framework</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
-    rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #0b0d13;
-      --text: #f6f8ff;
-      --muted: #adb4cc;
-      --line: rgba(255, 255, 255, 0.14);
-      --accent: #00d9ff;
-      --accent2: #00ffa3;
-      --surface: rgba(255, 255, 255, 0.04);
-      --surface2: rgba(255, 255, 255, 0.02);
-      --accent-dark: #0098cc;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0
-    }
-
-    html {
-      scroll-behavior: smooth
-    }
-
-    body {
-      font-family: 'Manrope', sans-serif;
-      color: var(--text);
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 90% 8%, rgba(0, 217, 255, 0.18), transparent 32%),
-        radial-gradient(circle at 9% 16%, rgba(0, 255, 163, 0.09), transparent 35%),
-        linear-gradient(180deg, #0a0d14 0%, #0d111a 100%);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    .wrap {
-      max-width: 1280px;
-      margin: auto;
-      padding: 3rem 1.5rem;
-    }
-
-    /* Header */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 5rem;
-      position: relative;
-      z-index: 10;
-    }
-
-    .logo {
-      font-family: 'Space Mono', monospace;
-      text-decoration: none;
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 1.3rem;
-      letter-spacing: 0.1em;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    /* Container */
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
-      margin-bottom: 3rem;
-    }
-
-    .footer-column h4 {
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-      color: var(--text-primary);
-    }
-
-    .footer-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .footer-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.3s;
-      font-size: 0.95rem;
-    }
-
-    .footer-links a:hover {
-      color: var(--accent-primary);
-    }
-
-
-    .footer-bottom {
-      padding-top: 2rem;
-      border-top: 1px solid var(--border-color);
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    .footer-social {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .footer-social a {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-
-    .footer-social a:hover {
-      border-color: var(--accent-primary);
-      color: var(--accent-primary);
-      transform: translateY(-2px);
-    }
-
-
-    .logo:hover {
-      transform: scale(1.08);
-      text-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
-    }
-
-    .back {
-      text-decoration: none;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      padding: 0.65rem 1.2rem;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-    }
-
-    .back:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(0, 217, 255, 0.08);
-      transform: translateY(-2px);
-    }
-
-    /* Hero */
-    .hero-main {
-      margin-bottom: 4rem;
-    }
-
-    .label {
-      display: inline-block;
-      background: linear-gradient(135deg, rgba(0, 217, 255, 0.15), rgba(0, 255, 163, 0.08));
-      border: 1px solid rgba(0, 217, 255, 0.4);
-      color: var(--accent);
-      padding: 0.45rem 1.1rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      margin-bottom: 1.5rem;
-      text-transform: uppercase;
-      animation: fadeInDown 0.8s ease-out;
-    }
-
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-25px)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(25px)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0
-      }
-
-      to {
-        opacity: 1
-      }
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 6vw, 4.2rem);
-      line-height: 1.15;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      animation: fadeInUp 1s ease-out 0.15s both;
-      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-sub {
-      font-size: 1.15rem;
-      color: var(--muted);
-      max-width: 750px;
-      line-height: 1.8;
-      animation: fadeInUp 1s ease-out 0.25s both;
-      margin-bottom: 2.5rem;
-    }
-
-    /* Trustmarks */
-    .trustmarks {
-      display: flex;
-      gap: 3rem;
-      margin: 3rem 0;
-      flex-wrap: wrap;
-      animation: fadeInUp 1s ease-out 0.35s both;
-    }
-
-    .trustmark {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .trustmark-icon {
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(0, 255, 163, 0.05));
-      border: 1px solid rgba(0, 217, 255, 0.3);
-      border-radius: 12px;
-      font-size: 1.5rem;
-    }
-
-    .trustmark-text h3 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.2rem;
-    }
-
-    .trustmark-text p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    /* CTA Buttons */
-    .hero-cta {
-      display: flex;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-      margin-top: 2.5rem;
-      animation: fadeInUp 1s ease-out 0.4s both;
-    }
-
-    .btn {
-      padding: 1.1rem 2rem;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 700;
-      border: 1px solid transparent;
-      font-size: 1rem;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .btn::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
-
-    .btn:hover::before {
-      opacity: 1;
-    }
-
-    .btn.primary {
-      background: linear-gradient(135deg, #00d9ff, #0ec8eb);
-      color: #001117;
-      box-shadow: 0 14px 36px rgba(0, 217, 255, 0.35);
-      font-weight: 800;
-    }
-
-    .btn.primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 50px rgba(0, 217, 255, 0.45);
-    }
-
-    .btn.primary:active {
-      transform: translateY(-1px);
-    }
-
-    .btn.secondary {
-      background: rgba(0, 217, 255, 0.08);
-      border-color: rgba(0, 217, 255, 0.4);
-      color: var(--accent);
-    }
-
-    .btn.secondary:hover {
-      background: rgba(0, 217, 255, 0.15);
-      border-color: var(--accent);
-      box-shadow: 0 10px 28px rgba(0, 217, 255, 0.12);
-      transform: translateY(-2px);
-    }
-
-    .btn.tertiary {
-      background: transparent;
-      border-color: var(--line);
-      color: var(--muted);
-    }
-
-    .btn.tertiary:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(0, 217, 255, 0.05);
-    }
-
-    /* Section */
-    .section {
-      margin-bottom: 4.5rem;
-    }
-
-    .section-header {
-      margin-bottom: 2.5rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      line-height: 1.2;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      animation: fadeInUp 1s ease-out both;
-    }
-
-    .section-desc {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 700px;
-      line-height: 1.8;
-      animation: fadeInUp 1s ease-out 0.1s both;
-    }
-
-    /* Features Grid */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-top: 2.5rem;
-    }
-
-    .feature-card {
-      background: linear-gradient(180deg, var(--surface), var(--surface2));
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      animation: fadeInUp 1s ease-out both;
-    }
-
-    .feature-card:nth-child(1) {
-      animation-delay: 0.1s
-    }
-
-    .feature-card:nth-child(2) {
-      animation-delay: 0.15s
-    }
-
-    .feature-card:nth-child(3) {
-      animation-delay: 0.2s
-    }
-
-    .feature-card:nth-child(4) {
-      animation-delay: 0.25s
-    }
-
-    .feature-card:nth-child(5) {
-      animation-delay: 0.3s
-    }
-
-    .feature-card:nth-child(6) {
-      animation-delay: 0.35s
-    }
-
-    .feature-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.3), transparent);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .feature-card:hover {
-      border-color: rgba(0, 217, 255, 0.5);
-      background: linear-gradient(180deg, rgba(0, 217, 255, 0.08), rgba(0, 217, 255, 0.02));
-      transform: translateY(-8px);
-      box-shadow: 0 20px 50px rgba(0, 217, 255, 0.1);
-    }
-
-    .feature-card:hover::before {
-      opacity: 1;
-    }
-
-    .feature-icon {
-      width: 52px;
-      height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, rgba(0, 217, 255, 0.12), rgba(0, 255, 163, 0.08));
-      border: 1px solid rgba(0, 217, 255, 0.25);
-      border-radius: 12px;
-      font-size: 1.8rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .feature-card h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 0.8rem;
-      color: var(--text);
-    }
-
-    .feature-card p {
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    /* Two Column */
-    .two-column {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 3rem;
-      align-items: start;
-      margin-top: 2.5rem;
-    }
-
-    .column-list {
-      list-style: none;
-    }
-
-    .column-list li {
-      display: flex;
-      gap: 0.8rem;
-      margin-bottom: 1.2rem;
-      font-size: 0.95rem;
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    .column-list li::before {
-      content: "✓";
-      color: var(--accent2);
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    /* Comparison */
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.8rem;
-      margin-top: 2.5rem;
-    }
-
-    .comparison-card {
-      background: linear-gradient(180deg, var(--surface), var(--surface2));
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: all 0.3s ease;
-    }
-
-    .comparison-card:hover {
-      border-color: rgba(0, 217, 255, 0.4);
-      background: linear-gradient(180deg, rgba(0, 217, 255, 0.05), rgba(0, 217, 255, 0.01));
-    }
-
-    .comparison-card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 1.2rem;
-      color: var(--text);
-    }
-
-    .comparison-card ul {
-      list-style: none;
-    }
-
-    .comparison-card li {
-      display: flex;
-      gap: 0.6rem;
-      margin-bottom: 0.8rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .comparison-card li::before {
-      content: "→";
-      color: var(--accent);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    /* Code Block */
-    .code-section {
-      background: linear-gradient(180deg, var(--surface), var(--surface2));
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 2.5rem;
-      margin-top: 2.5rem;
-      overflow: hidden;
-    }
-
-    .code-block {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(0, 217, 255, 0.2);
-      border-radius: 12px;
-      padding: 2rem;
-      overflow-x: auto;
-      margin-top: 1.5rem;
-    }
-
-    pre {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      color: #c7d2ff;
-      line-height: 1.8;
-      margin: 0;
-    }
-
-    /* Benefits Section */
-    .benefits {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2.5rem;
-    }
-
-    .benefit {
-      padding: 2rem;
-      background: linear-gradient(180deg, rgba(0, 217, 255, 0.06), rgba(0, 255, 163, 0.02));
-      border-left: 3px solid var(--accent);
-      border-radius: 12px;
-      transition: all 0.3s ease;
-    }
-
-    .benefit:hover {
-      border-left-color: var(--accent2);
-      background: linear-gradient(180deg, rgba(0, 255, 163, 0.08), rgba(0, 217, 255, 0.03));
-      transform: translateX(6px);
-    }
-
-    .benefit h4 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 0.6rem;
-    }
-
-    .benefit p {
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    /* Pricing */
-    .pricing-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-top: 2.5rem;
-    }
-
-    .pricing-card {
-      background: linear-gradient(180deg, var(--surface), var(--surface2));
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 2.5rem;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .pricing-card:hover {
-      border-color: rgba(0, 217, 255, 0.5);
-      transform: translateY(-8px);
-      box-shadow: 0 25px 60px rgba(0, 217, 255, 0.15);
-    }
-
-    .pricing-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, rgba(0, 217, 255, 0.15), rgba(0, 255, 163, 0.1));
-      border: 1px solid rgba(0, 217, 255, 0.5);
-      color: var(--accent);
-      padding: 0.4rem 0.9rem;
-      border-radius: 8px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .pricing-name {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-
-    .pricing-price {
-      font-size: 2.8rem;
-      font-weight: 800;
-      font-family: 'Space Mono', monospace;
-      margin: 1rem 0;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .pricing-period {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .pricing-desc {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin-bottom: 1.8rem;
-    }
-
-    .pricing-features {
-      list-style: none;
-      margin-bottom: 2rem;
-    }
-
-    .pricing-features li {
-      display: flex;
-      gap: 0.8rem;
-      margin-bottom: 0.9rem;
-      font-size: 0.9rem;
-      color: var(--text);
-    }
-
-    .pricing-features li::before {
-      content: "✓";
-      color: var(--accent2);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .pricing-card .btn {
-      width: 100%;
-      text-align: center;
-    }
-
-    /* Footer CTA */
-    .final-cta {
-      text-align: center;
-      padding: 3rem 2rem;
-      background: linear-gradient(145deg, rgba(0, 217, 255, 0.08), rgba(0, 255, 163, 0.04));
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      margin: 4rem 0;
-      animation: fadeIn 1s ease-out 0.5s both;
-    }
-
-    .final-cta h2 {
-      margin-bottom: 1rem;
-    }
-
-    .final-cta p {
-      max-width: 600px;
-      margin: 0 auto 2rem;
-    }
-
-    .final-cta .hero-cta {
-      justify-content: center;
-      margin: 0;
-    }
-
-    /* Responsive */
-    @media(max-width:1000px) {
-      .two-column {
-        grid-template-columns: 1fr;
-      }
-
-      .wrap {
-        padding: 2.5rem 1.2rem;
-      }
-
-      h1 {
-        font-size: 2.5rem;
-      }
-    }
-
-    @media(max-width:640px) {
-      .header {
-        flex-direction: column;
-        gap: 1rem;
-        margin-bottom: 3rem;
-      }
-
-      .trustmarks {
-        gap: 1.5rem;
-        flex-direction: column;
-      }
-
-      .hero-cta,
-      .final-cta .hero-cta {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-        text-align: center;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 1.8rem;
-      }
-
-      .section-title {
-        font-size: 1.4rem;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Embit Nexus | Enterprise SaaS Architecture Framework</title>
+<meta name="description" content="Enterprise-grade Flutter SaaS architecture. Complete auth, payment, profile, and AI modules — production-ready from day one.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-secondary: #f5f7fa;
+  --bg-tertiary: #eef1f6;
+  --text: #0a0c10;
+  --text-secondary: #3a3f4b;
+  --text-muted: #717888;
+  --border: #e2e6ed;
+  --blue: #007bff;
+  --blue-dark: #0056d2;
+  --blue-light: rgba(0,123,255,0.08);
+  --blue-glow: rgba(0,123,255,0.18);
+  --orange: #ff6600;
+  --orange-dark: #e05500;
+  --orange-light: rgba(255,102,0,0.08);
+  --orange-glow: rgba(255,102,0,0.18);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000; transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+.nav-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 1.1rem 2rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.logo { font-family: 'JetBrains Mono', monospace; font-size: 1.25rem; font-weight: 700; color: var(--blue); text-decoration: none; letter-spacing: 0.02em; }
+.logo span { color: var(--text); }
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+.nav-right a { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
+.nav-right a:hover { color: var(--blue); }
+.nav-back { display: inline-flex; align-items: center; gap: 0.4rem; border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); text-decoration: none; transition: all 0.2s; }
+.nav-back:hover { border-color: var(--blue); color: var(--blue); }
+
+/* HERO */
+.hero-wrap { max-width: 1280px; margin: 0 auto; padding: 140px 2rem 80px; }
+.hero-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: center; }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--orange-light); border: 1px solid rgba(255,102,0,0.25);
+  color: var(--orange); padding: 0.4rem 1rem; border-radius: 999px;
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 1.5rem;
+  animation: fadeUp 0.7s ease both;
+}
+h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.2rem; letter-spacing: -0.02em; animation: fadeUp 0.7s ease 0.1s both; }
+h1 em { font-style: normal; color: var(--orange); }
+.hero-desc { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem; animation: fadeUp 0.7s ease 0.2s both; }
+
+.trust-row { display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 2.5rem; animation: fadeUp 0.7s ease 0.25s both; }
+.trust-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+.trust-item span.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.3s both; }
+.btn-primary { background: var(--blue); color: #fff; border: none; padding: 0.9rem 1.8rem; border-radius: 10px; font-weight: 700; font-size: 0.95rem; cursor: pointer; text-decoration: none; display: inline-block; box-shadow: 0 8px 24px var(--blue-glow); transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1); }
+.btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 12px 32px var(--blue-glow); }
+.btn-orange { background: var(--orange); color: #fff; border: none; padding: 0.9rem 1.8rem; border-radius: 10px; font-weight: 700; font-size: 0.95rem; cursor: pointer; text-decoration: none; display: inline-block; box-shadow: 0 8px 24px var(--orange-glow); transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1); }
+.btn-orange:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 12px 32px var(--orange-glow); }
+.btn-ghost { background: transparent; color: var(--text-secondary); border: 1.5px solid var(--border); padding: 0.9rem 1.8rem; border-radius: 10px; font-weight: 600; font-size: 0.95rem; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s ease; }
+.btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+
+/* Hero Modules Visual */
+.modules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; animation: fadeUp 0.7s ease 0.2s both; }
+.module-card {
+  background: var(--bg-secondary); border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 1.4rem;
+  transition: all 0.25s ease; cursor: default;
+}
+.module-card:hover { border-color: var(--blue); box-shadow: 0 6px 20px var(--blue-glow); transform: translateY(-3px); }
+.module-card.orange:hover { border-color: var(--orange); box-shadow: 0 6px 20px var(--orange-glow); }
+.module-icon { font-size: 1.5rem; margin-bottom: 0.6rem; }
+.module-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem; }
+.module-card p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+.module-status { display: inline-block; margin-top: 0.6rem; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px; }
+.status-included { background: var(--blue-light); color: var(--blue); }
+.status-pro { background: var(--orange-light); color: var(--orange); }
+.status-enterprise { background: rgba(0,0,0,0.05); color: var(--text-muted); }
+
+/* SECTION */
+section { padding: 6rem 2rem; }
+.container { max-width: 1280px; margin: 0 auto; }
+.section-label { display: inline-block; background: var(--blue-light); border: 1px solid rgba(0,123,255,0.25); color: var(--blue); padding: 0.35rem 0.9rem; border-radius: 999px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem; }
+.section-label.orange { background: var(--orange-light); border-color: rgba(255,102,0,0.25); color: var(--orange); }
+.section-title { font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.015em; }
+.section-desc { font-size: 1.05rem; color: var(--text-secondary); max-width: 680px; line-height: 1.8; }
+
+/* FEATURES TABS */
+.tabs-section { background: var(--bg-secondary); }
+.tabs-row { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 2.5rem; margin-bottom: 2.5rem; background: var(--bg); width: fit-content; }
+.tab-btn { padding: 0.8rem 1.6rem; font-size: 0.88rem; font-weight: 700; cursor: pointer; border: none; background: transparent; color: var(--text-muted); transition: all 0.2s; }
+.tab-btn.active { background: var(--blue); color: #fff; }
+.tab-btn:hover:not(.active) { background: var(--bg-secondary); color: var(--text); }
+.tab-content { display: none; }
+.tab-content.active { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.feat-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.8rem; transition: all 0.25s; }
+.feat-card:hover { border-color: var(--blue); box-shadow: 0 6px 24px var(--blue-glow); transform: translateY(-3px); }
+.feat-card .icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+.feat-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; }
+.feat-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
+
+/* PRICING */
+.pricing-section { }
+.pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
+.price-card {
+  border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 2.5rem; position: relative;
+  transition: all 0.3s ease; display: flex; flex-direction: column;
+}
+.price-card:hover { border-color: var(--blue); box-shadow: 0 12px 40px var(--blue-glow); transform: translateY(-4px); }
+.price-card.featured { border-color: var(--blue); box-shadow: 0 4px 24px var(--blue-glow); }
+.price-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--blue); color: #fff; padding: 0.3rem 1rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+.price-tier { font-size: 0.78rem; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+.price-name { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.3rem; }
+.price-amount { font-size: 3rem; font-weight: 800; color: var(--blue); font-family: 'JetBrains Mono', monospace; line-height: 1; margin: 0.8rem 0 0.25rem; }
+.price-period { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.2rem; }
+.price-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+.feature-list { list-style: none; flex: 1; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.7rem; }
+.feature-list li { font-size: 0.88rem; color: var(--text-secondary); display: flex; gap: 0.6rem; align-items: flex-start; line-height: 1.5; }
+.feature-list li::before { content: '✓'; color: var(--blue); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.feature-list li.highlight { color: var(--text); font-weight: 600; }
+.feature-list li.highlight::before { content: '★'; color: var(--orange); }
+.price-cta { display: block; text-align: center; margin-top: auto; }
+.btn-muted { background: var(--bg-secondary); color: var(--text-muted); border: 1.5px solid var(--border); padding: 0.9rem 1.8rem; border-radius: 10px; font-weight: 600; font-size: 0.9rem; text-decoration: none; display: inline-block; text-align: center; cursor: not-allowed; }
+
+/* ARCH SECTION */
+.arch-section { background: var(--bg-secondary); }
+.arch-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: start; margin-top: 3rem; }
+.arch-code { background: #0a0c10; border-radius: 14px; padding: 2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; line-height: 1.85; color: #8b94b3; box-shadow: 0 20px 50px rgba(0,0,0,0.1); overflow-x: auto; }
+.c-blue { color: #66aaff; }
+.c-orange { color: #ff9966; }
+.c-green { color: #66d9a0; }
+.c-purple { color: #c792ea; }
+.c-muted { color: #5a6070; }
+.arch-extras { display: flex; flex-direction: column; gap: 1rem; }
+.arch-extra { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; transition: all 0.2s; }
+.arch-extra:hover { border-color: var(--orange); }
+.arch-extra h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.5rem; }
+.arch-extra p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; }
+
+/* COMPARISON TABLE */
+.compare-section { }
+.compare-table { margin-top: 3rem; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.compare-header { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; background: var(--text); color: #fff; }
+.compare-header div { padding: 1.2rem 1.5rem; font-size: 0.85rem; font-weight: 700; text-align: center; }
+.compare-header div:first-child { text-align: left; color: rgba(255,255,255,0.6); }
+.compare-header .col-highlight { color: var(--orange); }
+.compare-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; border-top: 1px solid var(--border); transition: background 0.15s; }
+.compare-row:hover { background: var(--bg-secondary); }
+.compare-row div { padding: 1rem 1.5rem; font-size: 0.88rem; text-align: center; display: flex; align-items: center; justify-content: center; }
+.compare-row div:first-child { text-align: left; justify-content: flex-start; color: var(--text-secondary); font-weight: 500; }
+.check { color: var(--blue); font-size: 1.1rem; font-weight: 700; }
+.check.orange { color: var(--orange); }
+.dash { color: var(--border); }
+
+/* ENTERPRISE */
+.enterprise-band {
+  background: var(--text); color: #fff; padding: 5rem 2rem;
+}
+.enterprise-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.enterprise-band h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; margin-bottom: 1rem; }
+.enterprise-band p { color: rgba(255,255,255,0.65); line-height: 1.8; margin-bottom: 1.5rem; }
+.enterprise-points { display: flex; flex-direction: column; gap: 1rem; }
+.enterprise-point { display: flex; gap: 0.8rem; align-items: flex-start; }
+.enterprise-point span.icon { font-size: 1.2rem; flex-shrink: 0; }
+.enterprise-point div h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.2rem; color: #fff; }
+.enterprise-point div p { font-size: 0.83rem; color: rgba(255,255,255,0.55); margin: 0; }
+
+/* CTA BAND */
+.cta-band { padding: 6rem 2rem; text-align: center; border-top: 1px solid var(--border); background: var(--bg-secondary); }
+.cta-band h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; }
+.cta-band p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2.5rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+.cta-flex { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* FOOTER */
+footer { background: var(--bg); border-top: 1px solid var(--border); padding: 3rem 2rem 2rem; }
+.footer-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-logo { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--blue); font-size: 1.1rem; }
+.footer-links { display: flex; gap: 2rem; list-style: none; }
+.footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+.footer-links a:hover { color: var(--text); }
+.footer-copy { color: var(--text-muted); font-size: 0.82rem; text-align: center; margin-top: 2rem; max-width: 1280px; margin-left: auto; margin-right: auto; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  .hero-inner { grid-template-columns: 1fr; padding-top: 100px; gap: 3rem; }
+  .hero-wrap { padding-top: 0; }
+  .arch-layout { grid-template-columns: 1fr; }
+  .enterprise-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+}
+@media (max-width: 768px) {
+  .modules-grid { grid-template-columns: 1fr 1fr; }
+  .tab-content.active { grid-template-columns: 1fr; }
+  .compare-table { overflow-x: auto; }
+  .compare-header, .compare-row { grid-template-columns: 1.5fr 0.8fr 0.8fr 0.8fr; min-width: 520px; }
+  .nav-right a { display: none; }
+}
+</style>
 </head>
-
 <body>
-  <main class="wrap">
 
-    <!-- Header -->
-    <header class="header">
-      <a class="logo" href="/">EMBIT.labs</a>
-      <a class="back" href="/">← Back to Home</a>
-    </header>
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="../" class="logo">EMBIT<span>.labs</span></a>
+    <div class="nav-right">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#architecture">Architecture</a>
+      <a href="../" class="nav-back">← Back to Home</a>
+    </div>
+  </div>
+</nav>
 
-    <!-- Hero Section -->
-    <section class="hero-main">
-      <span class="label">Enterprise Framework</span>
-      <h1>Production SaaS Architecture for Serious Builders.</h1>
-      <p class="hero-sub">
-        Nexus is the complete architectural foundation for shipping scalable, revenue-generating SaaS products. Built by
-        teams who have shipped real products. For teams shipping real money.
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🏢 Enterprise Framework</div>
+      <h1>Production SaaS Architecture for <em>Serious Builders.</em></h1>
+      <p class="hero-desc">
+        Nexus is the complete architectural foundation for shipping scalable, revenue-generating SaaS products. Built for teams that ship real products — and real money.
       </p>
-
-      <div class="trustmarks">
-        <div class="trustmark">
-          <div class="trustmark-icon">⚡</div>
-          <div class="trustmark-text">
-            <h3>Fast Deployment</h3>
-            <p>Ship features in days, not weeks</p>
-          </div>
-        </div>
-        <div class="trustmark">
-          <div class="trustmark-icon">🔒</div>
-          <div class="trustmark-text">
-            <h3>Enterprise Ready</h3>
-            <p>Built for multi-user, multi-role systems</p>
-          </div>
-        </div>
-        <div class="trustmark">
-          <div class="trustmark-icon">📈</div>
-          <div class="trustmark-text">
-            <h3>Built to Scale</h3>
-            <p>Handles millions of users seamlessly</p>
-          </div>
-        </div>
+      <div class="trust-row">
+        <div class="trust-item"><span class="dot"></span>Complete Auth Module</div>
+        <div class="trust-item"><span class="dot"></span>Payment Ready</div>
+        <div class="trust-item"><span class="dot"></span>AI Integration</div>
+        <div class="trust-item"><span class="dot"></span>Multi-Role RBAC</div>
       </div>
-
       <div class="hero-cta">
-        <a class="btn primary" href="#pricing">Get Nexus Now</a>
-        <a class="btn secondary" href="#pricing">View Pricing</a>
-        <a class="btn tertiary" href="#architecture">See Architecture</a>
+        <a href="#pricing" class="btn-primary">Get Nexus — $129</a>
+        <a href="#pricing" class="btn-orange">Get Nexus Pro — $199</a>
+        <a href="#architecture" class="btn-ghost">See Architecture</a>
       </div>
-    </section>
-
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="section">
-      <div class="section-header">
-        <span class="label">Plans</span>
-        <h2 class="section-title">Choose Your Path.</h2>
+    </div>
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-icon">🏗️</div>
+        <h4>Clean Architecture</h4>
+        <p>Feature-first modular structure, enforced.</p>
+        <span class="module-status status-included">All Plans</span>
       </div>
-
-      <div class="pricing-cards">
-        <div class="pricing-card">
-          <span class="pricing-badge">Standard</span>
-          <h3 class="pricing-name">Nexus</h3>
-          <div class="pricing-price">$129</div>
-          <p class="pricing-period">One-time purchase</p>
-          <p class="pricing-desc">Perfect for bootstrapped founders and small teams launching their first SaaS.</p>
-          <ul class="pricing-features">
-            <li>Clean Architecture setup</li>
-            <li>Complete auth module (email + OTP)</li>
-            <li>Payment module (Stripe/Razorpay)</li>
-            <li>Webhook & sandbox support</li>
-            <li>API layer + error mapping</li>
-            <li>Token persistence & refresh</li>
-            <li>Theme system (dark/light)</li>
-            <li>Code generator - EMBIT GENERATOR</li>
-          </ul>
-          <a class="btn primary" href="#">Get Started</a>
-        </div>
-
-        <div class="pricing-card">
-          <span class="pricing-badge"
-            style="background:linear-gradient(135deg,rgba(0,255,163,0.15),rgba(0,217,255,0.1));border-color:rgba(0,255,163,0.5);color:var(--accent2);">⭐
-            Most Popular</span>
-          <h3 class="pricing-name">Nexus Pro</h3>
-          <div class="pricing-price">$199</div>
-          <p class="pricing-period">One-time purchase</p>
-          <p class="pricing-desc">For teams scaling SaaS with AI. Everything in Starter + complete profile module + AI
-            integration.</p>
-          <ul class="pricing-features">
-            <li>Everything in Starter</li>
-            <li>Complete profile module</li>
-            <li>Profile edit & settings flows</li>
-            <li>🤖 AI Integration layer (OpenAI/Azure)</li>
-            <li>Streaming & token logging</li>
-            <li>Rate limit & timeout handling</li>
-            <li>Mock AI provider for testing</li>
-            <li>Advanced code generator - EMBIT GENERATOR</li>
-          </ul>
-          <a class="btn primary" href="#">Comming Soon</a>
-        </div>
-
-        <div class="pricing-card">
-          <span class="pricing-badge">Enterprise</span>
-          <h3 class="pricing-name">Nexus Enterprise</h3>
-          <div class="pricing-price">$499</div>
-          <p class="pricing-period">One-time purchase</p>
-          <p class="pricing-desc">For organizations with custom needs. Includes setup call & architecture consultation.
-          </p>
-          <ul class="pricing-features">
-            <li>Everything in Pro</li>
-            <li>30-min architecture consultation</li>
-            <li>Custom module scaffolding</li>
-            <li>Team onboarding support</li>
-            <li>Custom integration support</li>
-            <li>6 months email support</li>
-            <li>Custom environment setup</li>
-            <li>Priority updates</li>
-          </ul>
-          <a class="btn secondary" href="#">Comming Soon</a>
-        </div>
+      <div class="module-card">
+        <div class="module-icon">🔐</div>
+        <h4>Auth Module</h4>
+        <p>Email, OTP, token refresh, session management.</p>
+        <span class="module-status status-included">All Plans</span>
       </div>
-    </section>
-
-    <!-- Architecture Section -->
-    <section class="section">
-      <div class="section-header">
-        <span class="label">Core Architecture</span>
-        <h2 class="section-title">Built for Scale from Day One.</h2>
-        <p class="section-desc">
-          Nexus isn't a starter template—it's enterprise architecture that scales with your business. Every decision
-          made for production workflows.
-        </p>
+      <div class="module-card orange">
+        <div class="module-icon">💳</div>
+        <h4>Payment Module</h4>
+        <p>Stripe, Razorpay, webhooks, subscriptions.</p>
+        <span class="module-status status-included">All Plans</span>
       </div>
-
-      <div class="features">
-        <div class="feature-card">
-          <div class="feature-icon">🏗️</div>
-          <h3>Modular Clean Architecture</h3>
-          <p>Feature-first scalable folder structure that keeps codebases sane at 10k+ lines.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔐</div>
-          <h3>Complete Auth Module</h3>
-          <p>Fully wired authentication with email, OTP, token refresh, secure persistence, and error handling.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">👤</div>
-          <h3>Complete Profile Module</h3>
-          <p>User profile management fully integrated with auth, including settings, preferences, and data persistence.
-          </p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">💳</div>
-          <h3>Payment Module</h3>
-          <p>Gateway-agnostic payment flows with Stripe/Razorpay, webhooks, subscriptions, and full test mode support.
-          </p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🌐</div>
-          <h3>Enterprise API Layer</h3>
-          <p>Interceptor-based networking with token refresh, retry logic, and error mapping built-in.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">⚙️</div>
-          <h3>Environment Config</h3>
-          <p>Dev, staging, and production environments with secure credential management.</p>
-        </div>
+      <div class="module-card orange">
+        <div class="module-icon">🤖</div>
+        <h4>AI Integration</h4>
+        <p>OpenAI, streaming, rate limits, mock provider.</p>
+        <span class="module-status status-pro">Pro+</span>
       </div>
-    </section>
-
-    <!-- Built for Scale Section -->
-    <section class="section">
-      <div class="section-header">
-        <span class="label">Scalability</span>
-        <h2 class="section-title">Architecture That Survives Growth.</h2>
+      <div class="module-card">
+        <div class="module-icon">👤</div>
+        <h4>Profile Module</h4>
+        <p>Full profile management wired to auth.</p>
+        <span class="module-status status-pro">Pro+</span>
       </div>
+      <div class="module-card">
+        <div class="module-icon">🌍</div>
+        <h4>Env Config</h4>
+        <p>Dev, staging, prod environments ready.</p>
+        <span class="module-status status-included">All Plans</span>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <div class="two-column">
-        <ul class="column-list">
-          <li>Advanced modular Clean Architecture patterns</li>
-          <li>Feature-first scalable folder strategy</li>
-          <li>Base repository with generic result wrappers</li>
-          <li>Centralized failure & exception mapping</li>
-          <li>Interceptor-based API layer (token refresh ready)</li>
-          <li>Environment configuration (dev / staging / prod)</li>
+<!-- FEATURES TABS -->
+<section id="features" class="tabs-section">
+  <div class="container reveal">
+    <span class="section-label orange">What's Included</span>
+    <h2 class="section-title">Every layer. Every module. Production-ready.</h2>
+    <p class="section-desc">Nexus isn't a starter template — it's an enterprise development system.</p>
+
+    <div class="tabs-row">
+      <button class="tab-btn active" data-tab="core">Core Architecture</button>
+      <button class="tab-btn" data-tab="auth">Auth & Profile</button>
+      <button class="tab-btn" data-tab="payment">Payment</button>
+      <button class="tab-btn" data-tab="ai">AI Layer</button>
+    </div>
+
+    <div id="tab-core" class="tab-content active">
+      <div class="feat-card"><div class="icon">🏗️</div><h3>Modular Clean Architecture</h3><p>Feature-first scalable folder structure that keeps codebases sane at 10k+ lines.</p></div>
+      <div class="feat-card"><div class="icon">⚡</div><h3>BLoC + GetIt DI</h3><p>Pre-configured state management and dependency injection. Zero setup friction.</p></div>
+      <div class="feat-card"><div class="icon">🛡️</div><h3>Multi-Role RBAC</h3><p>Role-based access control with route guards and feature-level permission logic.</p></div>
+      <div class="feat-card"><div class="icon">🌐</div><h3>Enterprise API Layer</h3><p>Interceptor-based networking with token refresh, retry logic, and error mapping.</p></div>
+      <div class="feat-card"><div class="icon">⚙️</div><h3>Environment Config</h3><p>Dev, staging, and production environments with secure credential management.</p></div>
+      <div class="feat-card"><div class="icon">🤖</div><h3>Embit Engine CLI</h3><p>Advanced code generator. Features, models, usecases — one command, full architecture.</p></div>
+    </div>
+
+    <div id="tab-auth" class="tab-content">
+      <div class="feat-card"><div class="icon">📧</div><h3>Email Authentication</h3><p>Complete email sign-up and login flows with validation and error handling.</p></div>
+      <div class="feat-card"><div class="icon">📱</div><h3>OTP Verification</h3><p>Phone-based OTP flow with countdown, resend logic, and secure validation.</p></div>
+      <div class="feat-card"><div class="icon">🔄</div><h3>Token Refresh</h3><p>Automatic silent token refresh with interceptor-level handling. No manual wiring.</p></div>
+      <div class="feat-card"><div class="icon">💾</div><h3>Secure Persistence</h3><p>Encrypted token storage with flutter_secure_storage. Session cleanup on logout.</p></div>
+      <div class="feat-card"><div class="icon">👤</div><h3>Profile Module</h3><p>Full user profile management, edit flows, settings, and data persistence patterns.</p></div>
+      <div class="feat-card"><div class="icon">🖼️</div><h3>Avatar Handling</h3><p>Image upload, cropping, and URL management integrated into the profile flow.</p></div>
+    </div>
+
+    <div id="tab-payment" class="tab-content">
+      <div class="feat-card"><div class="icon">💳</div><h3>Stripe Integration</h3><p>Complete Stripe payment flow with checkout, confirmation, and failure handling.</p></div>
+      <div class="feat-card"><div class="icon">₹</div><h3>Razorpay Integration</h3><p>Razorpay gateway fully wired. Switch providers without touching your UI layer.</p></div>
+      <div class="feat-card"><div class="icon">🔗</div><h3>Webhook System</h3><p>Server-side webhook confirmation for secure payment verification. Production-ready.</p></div>
+      <div class="feat-card"><div class="icon">📦</div><h3>Subscription Architecture</h3><p>Plan-based subscription management with upgrade, downgrade, and cancellation flows.</p></div>
+      <div class="feat-card"><div class="icon">🧪</div><h3>Test / Sandbox Mode</h3><p>Full mock payment provider for unit testing. Ship with confidence.</p></div>
+      <div class="feat-card"><div class="icon">📋</div><h3>Production Checklist</h3><p>Step-by-step guide to go live. No surprises at launch.</p></div>
+    </div>
+
+    <div id="tab-ai" class="tab-content">
+      <div class="feat-card"><div class="icon">🧠</div><h3>Provider-Agnostic Design</h3><p>Interface-based AI repository. Swap OpenAI for Azure or any provider without UI changes.</p></div>
+      <div class="feat-card"><div class="icon">📡</div><h3>Streaming Responses</h3><p>Real-time token-by-token streaming fully wired through BLoC to your UI.</p></div>
+      <div class="feat-card"><div class="icon">🔒</div><h3>Secure Key Handling</h3><p>Environment-based API key management. Server-proxy ready architecture included.</p></div>
+      <div class="feat-card"><div class="icon">⏱️</div><h3>Rate Limit & Retry</h3><p>Automatic rate limit detection, backoff strategy, and timeout handling baked in.</p></div>
+      <div class="feat-card"><div class="icon">🧪</div><h3>Mock AI Provider</h3><p>Offline-testable mock provider. Unit test your AI features without API calls.</p></div>
+      <div class="feat-card"><div class="icon">📊</div><h3>Token Usage Logging</h3><p>Track token consumption per request. Cost management and analytics ready.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing-section">
+  <div class="container reveal" style="text-align: center;">
+    <span class="section-label">Pricing</span>
+    <h2 class="section-title">Build once. Ship forever.</h2>
+    <p class="section-desc" style="margin: 0 auto 0;">No subscriptions. No seat fees. One payment, one codebase, unlimited projects.</p>
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <div class="price-tier">Standard</div>
+        <div class="price-name">Nexus</div>
+        <div class="price-amount">$129</div>
+        <div class="price-period">One-time · Lifetime updates</div>
+        <p class="price-desc">Perfect for bootstrapped founders and small teams launching their first SaaS product.</p>
+        <ul class="feature-list">
+          <li>Modular Clean Architecture setup</li>
+          <li>Complete auth module (email + OTP)</li>
+          <li>Token persistence & refresh</li>
+          <li>Payment module (Stripe / Razorpay)</li>
+          <li>Webhook & sandbox support</li>
+          <li>API layer + error mapping</li>
+          <li>Multi-role RBAC system</li>
+          <li>Environment configuration (dev/prod)</li>
+          <li>Dark/Light theme system</li>
+          <li>Embit Generator CLI</li>
         </ul>
-        <ul class="column-list">
-          <li>Role-based access control (multi-role ready)</li>
-          <li>Route guards with protected navigation</li>
-          <li>Reusable base BLoC / Cubit abstractions</li>
-          <li>Pagination & infinite scroll foundation</li>
-          <li>Standardized API response models</li>
-          <li>Advanced code generator with layered scaffolding</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Team & Collaboration Section -->
-    <section class="section">
-      <div class="section-header">
-        <span class="label">Team Collaboration</span>
-        <h2 class="section-title">Designed for Teams That Grow.</h2>
-        <p class="section-desc">
-          Onboard new developers in hours, not weeks. Opinionated structure means fewer code review debates.
-        </p>
+        <a href="#" class="btn-primary price-cta">Get Nexus</a>
       </div>
 
-      <div class="benefits">
-        <div class="benefit">
-          <h4>✓ Standardized Patterns</h4>
-          <p>Every developer knows where code lives and how to structure it. No more architectural debates.</p>
-        </div>
-        <div class="benefit">
-          <h4>✓ Fast Onboarding</h4>
-          <p>New team members ship features on day one because the structure is obvious and documented.</p>
-        </div>
-        <div class="benefit">
-          <h4>✓ Reduced Merge Conflicts</h4>
-          <p>Strict modular boundaries mean features live in their own spaces. Parallel development without friction.
-          </p>
-        </div>
-        <div class="benefit">
-          <h4>✓ Code Review Ready</h4>
-          <p>Architecture rules are built-in. Reviews focus on logic, not structure.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Monetization Section -->
-    <section class="section">
-      <div class="section-header">
-        <span class="label">Revenue Ready</span>
-        <h2 class="section-title">Built for Monetized Products.</h2>
-        <p class="section-desc">
-          Complete auth, profile, and payment modules give you everything needed for subscription management, premium
-          features, and revenue generation.
-        </p>
-      </div>
-
-      <div class="comparison-grid">
-        <div class="comparison-card">
-          <h3>Complete Auth Module</h3>
-          <ul>
-            <li>Email authentication flows</li>
-            <li>OTP verification setup</li>
-            <li>Secure token persistence</li>
-            <li>Automatic token refresh</li>
-            <li>Logout & session cleanup</li>
-            <li>Error state handling</li>
-          </ul>
-        </div>
-        <div class="comparison-card">
-          <h3>Complete Profile Module</h3>
-          <ul>
-            <li>User data management</li>
-            <li>Profile edit & update flows</li>
-            <li>Preference & settings storage</li>
-            <li>Avatar/image handling</li>
-            <li>Integrated with auth module</li>
-            <li>Data persistence patterns</li>
-          </ul>
-        </div>
-        <div class="comparison-card">
-          <h3>Payment Module (Pro+)</h3>
-          <ul>
-            <li>Gateway-agnostic (Stripe/Razorpay)</li>
-            <li>Subscription-ready architecture</li>
-            <li>Webhook confirmation system</li>
-            <li>Secure backend-verified flow</li>
-            <li>Failure & cancellation handling</li>
-            <li>Test mode & sandbox support</li>
-            <li>Mockable for unit testing</li>
-            <li>Production checklist included</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- AI Integration Section -->
-    <section class="section">
-      <div class="section-header">
-        <span class="label">AI Ready (Pro+)</span>
-        <h2 class="section-title">Production-Grade AI Integration.</h2>
-        <p class="section-desc">
-          Enterprise-ready AI layer built into Nexus Pro. Provider-agnostic, fully testable, and production-ready from
-          day one.
-        </p>
-      </div>
-
-      <div class="two-column">
-        <ul class="column-list">
-          <li>Clean Architecture compliant AI layer</li>
-          <li>Provider-agnostic design (OpenAI/OpenRouter/Azure)</li>
-          <li>Interface-based AI repository pattern</li>
-          <li>No direct SDK calls in UI layer</li>
-          <li>Pluggable AI provider system</li>
-          <li>Environment-based model configuration</li>
-          <li>Secure API key handling pattern</li>
-          <li>Server-proxy ready architecture</li>
-          <li>Structured request & response models</li>
-        </ul>
-        <ul class="column-list">
-          <li>Streaming response support</li>
-          <li>Token usage logging capability</li>
+      <div class="price-card featured">
+        <div class="price-badge">⭐ Most Popular</div>
+        <div class="price-tier">Pro</div>
+        <div class="price-name">Nexus Pro</div>
+        <div class="price-amount">$199</div>
+        <div class="price-period">One-time · Lifetime updates</div>
+        <p class="price-desc">For teams scaling SaaS with AI features. Everything in Nexus plus full AI integration layer.</p>
+        <ul class="feature-list">
+          <li class="highlight">Everything in Nexus</li>
+          <li>Complete profile module</li>
+          <li>Profile edit & settings flows</li>
+          <li class="highlight">AI Integration Layer (OpenAI/Azure)</li>
+          <li>Streaming & token logging</li>
           <li>Rate limit & timeout handling</li>
-          <li>Centralized AI error mapping</li>
-          <li>Retry mechanism support</li>
           <li>Mock AI provider for testing</li>
-          <li>Unit-test friendly AI layer</li>
-          <li>BLoC-integrated AI flow</li>
-          <li>Production-ready documentation</li>
+          <li>Advanced Embit Generator CLI</li>
         </ul>
-      </div>
-    </section>
-
-    <!-- Architecture Snapshot -->
-    <section id="architecture" class="section">
-      <div class="section-header">
-        <span class="label">Project Structure</span>
-        <h2 class="section-title">The Architecture Inside.</h2>
+        <a href="#" class="btn-orange price-cta">Coming Soon</a>
       </div>
 
-      <div class="code-section">
-        <pre><code>lib/
-│
-├─ core/                              # Global application core
-│
-│  ├─ config/                         # Environment configuration
-│  │   ├─ app_config.dart
-│  │   ├─ env.dart
-│  │   ├─ dev_config.dart
-│  │   ├─ staging_config.dart
-│  │   └─ prod_config.dart
-│  │
-│  ├─ network/                        # API infrastructure
-│  │   ├─ api_client.dart
-│  │   ├─ token_manager.dart
-│  │   ├─ interceptors/
-│  │   │   ├─ auth_interceptor.dart
-│  │   │   ├─ logging_interceptor.dart
-│  │   │   ├─ retry_interceptor.dart
-│  │   │   └─ error_interceptor.dart
-│  │   └─ models/
-│  │
-│  ├─ error/                          # Exception → Failure mapping
-│  │   ├─ exceptions.dart
-│  │   ├─ failures.dart
-│  │   ├─ error_mapper.dart
-│  │   └─ failure_handler.dart
-│  │
-│  ├─ router/                         # Navigation system
-│  │   ├─ app_router.dart
-│  │   ├─ route_names.dart
-│  │   ├─ auth_guard.dart
-│  │   ├─ rbac_guard.dart
-│  │   └─ route_utils.dart
-│  │
-│  ├─ theme/                          # Theme system
-│  │   ├─ app_theme.dart
-│  │   ├─ light_theme.dart
-│  │   ├─ dark_theme.dart
-│  │   ├─ theme_cubit.dart
-│  │   └─ theme_extensions.dart
-│  │
-│  ├─ di/                             # Dependency injection setup
-│  │   ├─ injection.dart
-│  │   ├─ injection_container.dart
-│  │   └─ module_injector.dart
-│  │
-│  ├─ ai/                             # AI infrastructure layer (optional premium)
-│  │   ├─ ai_provider.dart
-│  │   ├─ ai_client.dart
-│  │   ├─ ai_request.dart
-│  │   ├─ ai_response.dart
-│  │   ├─ ai_error_mapper.dart
-│  │   └─ providers/
-│  │       ├─ openai_provider.dart
-│  │       ├─ openrouter_provider.dart
-│  │       └─ mock_ai_provider.dart
-│  │
-│  └─ utils/                          # Core utilities
-│      ├─ logger.dart
-│      ├─ permission_checker.dart
-│      └─ constants.dart
-│
-│
-├─ features/                          # Modular feature layer
-│
-│  ├─ auth/                           # Authentication module
-│  │   ├─ data/
-│  │   │   ├─ datasources/
-│  │   │   ├─ models/
-│  │   │   └─ repositories/
-│  │   ├─ domain/
-│  │   │   ├─ entities/
-│  │   │   │   ├─ user.dart
-│  │   │   │   └─ role.dart
-│  │   │   ├─ repositories/
-│  │   │   └─ usecases/
-│  │   └─ presentation/
-│  │       ├─ bloc/
-│  │       └─ pages/
-│  │
-│  ├─ profile/                        # User profile module
-│  │   ├─ data/
-│  │   ├─ domain/
-│  │   └─ presentation/
-│  │
-│  ├─ payment/                        # 💰 Monetization module
-│  │   ├─ data/
-│  │   │   ├─ datasources/
-│  │   │   │   ├─ payment_remote_datasource.dart
-│  │   │   ├─ models/
-│  │   │   │   ├─ payment_request_model.dart
-│  │   │   │   ├─ payment_response_model.dart
-│  │   │   ├─ repositories/
-│  │   │   │   └─ payment_repository_impl.dart
-│  │   │   └─ gateways/
-│  │   │       ├─ stripe_gateway.dart
-│  │   │       ├─ razorpay_gateway.dart
-│  │   │       └─ mock_payment_gateway.dart
-│  │   │
-│  │   ├─ domain/
-│  │   │   ├─ entities/
-│  │   │   │   ├─ payment.dart
-│  │   │   │   ├─ payment_status.dart
-│  │   │   │   └─ subscription_plan.dart
-│  │   │   ├─ repositories/
-│  │   │   │   └─ payment_repository.dart
-│  │   │   └─ usecases/
-│  │   │       ├─ initiate_payment.dart
-│  │   │       ├─ verify_payment.dart
-│  │   │       ├─ fetch_plans.dart
-│  │   │       └─ handle_subscription.dart
-│  │   │
-│  │   └─ presentation/
-│  │       ├─ bloc/
-│  │       │   ├─ payment_bloc.dart
-│  │       │   ├─ payment_event.dart
-│  │       │   └─ payment_state.dart
-│  │       └─ pages/
-│  │           ├─ checkout_page.dart
-│  │           ├─ payment_result_page.dart
-│  │           └─ subscription_page.dart
-│  │
-│  └─ [future_features_here]/
-│
-│
-└─ shared/                            # Reusable components
-    ├─ components/                    # Buttons, cards, loaders
-    ├─ extensions/                    # Dart & BuildContext extensions
-    ├─ widgets/                       # Reusable UI blocks
-    └─ utils/                         # Shared helpers</code></pre>
+      <div class="price-card">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-name">Nexus Enterprise</div>
+        <div class="price-amount">$499</div>
+        <div class="price-period">One-time · Priority support</div>
+        <p class="price-desc">For organizations with custom needs. Includes setup call and architecture consultation.</p>
+        <ul class="feature-list">
+          <li class="highlight">Everything in Nexus Pro</li>
+          <li>30-min architecture consultation</li>
+          <li>Custom module scaffolding</li>
+          <li>Team onboarding support</li>
+          <li>Custom integration support</li>
+          <li>6 months email support</li>
+          <li>Custom environment setup</li>
+          <li>Priority updates</li>
+        </ul>
+        <a href="#" class="btn-muted price-cta">Coming Soon</a>
       </div>
-    </section>
 
-    <!-- Final CTA -->
-    <section class="final-cta">
-      <h2>Stop Rebuilding. Start Shipping.</h2>
-      <p>
-        Join teams who've already saved thousands of hours on architecture. Nexus is production-ready. Your product
-        won't be.
-      </p>
-      <!-- <div class="hero-cta">
-    <a class="btn primary" href="#">Get Nexus Pro</a>
-    <a class="btn secondary" href="#">View All Pricing</a>
-  </div> -->
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <h3>EMBIT.labs</h3>
-            <p>Automating Flutter architecture so developers can focus on what matters: building features users
-              love.</p>
-            <div class="footer-social">
-              <a href="https://github.com/embitlabs" target="_blank">⚡</a>
-              <a href="https://twitter.com/embitlabs" target="_blank">🐦</a>
-              <a href="https://linkedin.com/company/embitlabs" target="_blank">💼</a>
-              <a href="https://t.me/embitlabs" target="_blank">💬</a>
-            </div>
-          </div>
+<!-- COMPARISON TABLE -->
+<section class="compare-section" style="background: var(--bg-secondary);">
+  <div class="container reveal">
+    <span class="section-label orange">Compare</span>
+    <h2 class="section-title">What's in each plan?</h2>
+    <p class="section-desc">Side by side, so you can pick exactly what your team needs.</p>
+    <div style="overflow-x: auto;">
+    <div class="compare-table">
+      <div class="compare-header">
+        <div>Feature</div>
+        <div>Nexus</div>
+        <div class="col-highlight">Pro</div>
+        <div>Enterprise</div>
+      </div>
+      <div class="compare-row"><div>Clean Architecture</div><div><span class="check">✓</span></div><div><span class="check">✓</span></div><div><span class="check">✓</span></div></div>
+      <div class="compare-row"><div>Auth Module</div><div><span class="check">✓</span></div><div><span class="check">✓</span></div><div><span class="check">✓</span></div></div>
+      <div class="compare-row"><div>Payment Module</div><div><span class="check">✓</span></div><div><span class="check">✓</span></div><div><span class="check">✓</span></div></div>
+      <div class="compare-row"><div>RBAC System</div><div><span class="check">✓</span></div><div><span class="check">✓</span></div><div><span class="check">✓</span></div></div>
+      <div class="compare-row"><div>Environment Config</div><div><span class="check">✓</span></div><div><span class="check">✓</span></div><div><span class="check">✓</span></div></div>
+      <div class="compare-row"><div>Profile Module</div><div><span class="dash">—</span></div><div><span class="check orange">✓</span></div><div><span class="check orange">✓</span></div></div>
+      <div class="compare-row"><div>AI Integration Layer</div><div><span class="dash">—</span></div><div><span class="check orange">✓</span></div><div><span class="check orange">✓</span></div></div>
+      <div class="compare-row"><div>Architecture Consultation</div><div><span class="dash">—</span></div><div><span class="dash">—</span></div><div><span class="check">✓</span></div></div>
+      <div class="compare-row"><div>6-Month Email Support</div><div><span class="dash">—</span></div><div><span class="dash">—</span></div><div><span class="check">✓</span></div></div>
+    </div>
+    </div>
+  </div>
+</section>
 
-          <div class="footer-column">
-            <h4>Products</h4>
-            <ul class="footer-links">
-              <li><a href="#products">Ignite Framework</a></li>
-              <li><a href="#products">Nexus Framework</a></li>
-              <li><a href="#products">Embit Engine</a></li>
-              <li><a href="#roadmap">Roadmap</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h4>Resources</h4>
-            <ul class="footer-links">
-              <li><a href="#">Documentation</a></li>
-              <li><a href="#demo">Video Demos</a></li>
-              <li><a href="#">API Reference</a></li>
-              <li><a href="#">GitHub</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h4>Company</h4>
-            <ul class="footer-links">
-              <li><a href="#founder">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-            </ul>
-          </div>
+<!-- ARCHITECTURE -->
+<section id="architecture" class="arch-section">
+  <div class="container reveal">
+    <span class="section-label">Architecture</span>
+    <h2 class="section-title">The architecture inside.</h2>
+    <p class="section-desc">Enterprise structure that survives growth. Every decision made for production workflows.</p>
+    <div class="arch-layout">
+      <div class="arch-code">
+<span class="c-muted">lib/</span>
+<span class="c-blue"> ├─ core/</span>
+<span class="c-green"> │   ├─ config/</span>          <span class="c-muted">→ dev / staging / prod</span>
+<span class="c-green"> │   ├─ network/</span>         <span class="c-muted">→ API client + interceptors</span>
+<span class="c-muted"> │   │   └─ interceptors/</span>
+<span class="c-muted"> │   │       ├─ auth_interceptor.dart</span>
+<span class="c-muted"> │   │       ├─ retry_interceptor.dart</span>
+<span class="c-muted"> │   │       └─ error_interceptor.dart</span>
+<span class="c-green"> │   ├─ error/</span>           <span class="c-muted">→ Exception → Failure mapping</span>
+<span class="c-green"> │   ├─ router/</span>          <span class="c-muted">→ Route guards + RBAC</span>
+<span class="c-green"> │   ├─ theme/</span>           <span class="c-muted">→ Dark / light system</span>
+<span class="c-green"> │   ├─ di/</span>             <span class="c-muted">→ Dependency injection</span>
+<span class="c-purple"> │   └─ ai/</span>             <span class="c-muted">→ AI layer (Pro+)</span>
+<span class="c-muted"> │       ├─ openai_provider.dart</span>
+<span class="c-muted"> │       └─ mock_ai_provider.dart</span>
+<span class="c-blue"> ├─ features/</span>
+<span class="c-orange"> │   ├─ auth/</span>            <span class="c-muted">→ Complete auth module</span>
+<span class="c-orange"> │   ├─ profile/</span>         <span class="c-muted">→ Profile module (Pro+)</span>
+<span class="c-orange"> │   ├─ payment/</span>         <span class="c-muted">→ Payment module</span>
+<span class="c-muted"> │   │   ├─ gateways/</span>
+<span class="c-muted"> │   │   │   ├─ stripe_gateway.dart</span>
+<span class="c-muted"> │   │   │   └─ razorpay_gateway.dart</span>
+<span class="c-orange"> │   └─ [your_features]/</span>  <span class="c-muted">→ CLI-generated</span>
+<span class="c-blue"> └─ shared/</span>              <span class="c-muted">→ Reusable components</span>
+      </div>
+      <div class="arch-extras">
+        <div class="arch-extra">
+          <h4>🏭 Gateway-Agnostic Payments</h4>
+          <p>Interface-based payment repository. Swap Stripe for Razorpay with zero UI changes. Mock provider for unit tests.</p>
         </div>
-
-        <div class="footer-bottom">
-          <p>© 2026 Embit Labs. Built by developers, for developers. All rights reserved.</p>
+        <div class="arch-extra">
+          <h4>🛡️ RBAC at Every Layer</h4>
+          <p>Role-based access from route guards down to use case level. Built for multi-tenant applications.</p>
+        </div>
+        <div class="arch-extra">
+          <h4>🔄 Token Lifecycle Management</h4>
+          <p>Silent refresh, secure storage, and automatic session cleanup — all handled in the interceptor layer.</p>
+        </div>
+        <div class="arch-extra">
+          <h4>📡 Streaming AI Layer</h4>
+          <p>Provider-agnostic AI integration with streaming, rate limiting, and BLoC-connected state management.</p>
+        </div>
+        <div class="arch-extra">
+          <h4>⚙️ Multi-Environment Config</h4>
+          <p>Dev, staging, and production environments with separate configs and secure credential management.</p>
         </div>
       </div>
-    </footer>
+    </div>
+  </div>
+</section>
 
-  </main>
+<!-- ENTERPRISE BAND -->
+<div class="enterprise-band">
+  <div class="enterprise-inner">
+    <div>
+      <h2>Built for teams that scale.</h2>
+      <p>Nexus Enterprise includes everything your team needs to onboard fast, ship confidently, and scale without architectural debt.</p>
+      <a href="#pricing" class="btn-orange">View Enterprise Plan</a>
+    </div>
+    <div class="enterprise-points">
+      <div class="enterprise-point">
+        <span class="icon">📞</span>
+        <div><h4>Architecture Consultation</h4><p>30-minute call to align the framework with your specific product requirements.</p></div>
+      </div>
+      <div class="enterprise-point">
+        <span class="icon">🚀</span>
+        <div><h4>Custom Module Scaffolding</h4><p>We scaffold your core feature modules to match your product domain.</p></div>
+      </div>
+      <div class="enterprise-point">
+        <span class="icon">👥</span>
+        <div><h4>Team Onboarding Support</h4><p>Your whole team gets onboarded. Everyone ships on day one.</p></div>
+      </div>
+      <div class="enterprise-point">
+        <span class="icon">📬</span>
+        <div><h4>6-Month Email Support</h4><p>Direct access. Questions answered fast. No waiting in forums.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Stop rebuilding. Start shipping.</h2>
+  <p>Everything your SaaS needs — auth, payments, profiles, AI — wired and ready. Build the product, not the plumbing.</p>
+  <div class="cta-flex">
+    <a href="#pricing" class="btn-primary">Get Nexus — $129</a>
+    <a href="#pricing" class="btn-orange">Get Nexus Pro — $199</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">EMBIT.labs</div>
+    <ul class="footer-links">
+      <li><a href="../">Home</a></li>
+      <li><a href="../ignite/">Ignite</a></li>
+      <li><a href="../engine/">Engine</a></li>
+      <li><a href="#">Docs</a></li>
+      <li><a href="#">GitHub</a></li>
+    </ul>
+  </div>
+  <p class="footer-copy">© 2026 Embit Labs. Built by developers, for developers.</p>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
+
+// Tabs
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
 </body>
-
-
 </html>
