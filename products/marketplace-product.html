@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product · EVLOV Market</title>
+    <meta name="description" content="EVLOV Market product details." />
+    <link rel="icon" href="../assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../assets/site.css?v=20260329-4" />
+    <style>
+      .product-hero {
+        padding: 70px 0 34px;
+        background:
+          radial-gradient(900px 520px at 15% 5%, rgba(59, 130, 246, 0.14), transparent 60%),
+          radial-gradient(900px 520px at 85% 10%, rgba(147, 197, 253, 0.16), transparent 55%),
+          linear-gradient(180deg, #fff 0%, var(--neutral-50) 100%);
+        border-bottom: 1px solid var(--neutral-200);
+      }
+      .product-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+        align-items: center;
+      }
+      .product-price {
+        font-family: var(--font-display);
+        font-weight: 900;
+        font-size: 28px;
+        letter-spacing: -0.02em;
+        color: var(--primary-900);
+      }
+      .tag-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+      .tag-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(59, 130, 246, 0.08);
+        border: 1px solid rgba(59, 130, 246, 0.18);
+        color: rgba(10, 15, 30, 0.86);
+        font-weight: 900;
+        font-size: var(--text-xs);
+      }
+      .muted-strong {
+        color: rgba(55, 65, 81, 0.88);
+        font-weight: 800;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a href="../index.html" class="logo" aria-label="EVLOV home">
+          <img src="../assets/logo.svg" alt="EVLOV" />
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="../marketplace/index.html">Marketplace</a></li>
+            <li><a href="../docs/index.html">Documentation</a></li>
+            <li><a href="../about/index.html">About</a></li>
+            <li><a href="../contact/index.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-cta">
+          <a class="btn btn-primary" href="../docs/index.html#commands">Get Started</a>
+        </div>
+
+        <button class="mobile-menu-toggle" type="button" aria-label="Open menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="product-hero">
+        <div class="container">
+          <div class="pill" id="productPill"><i class="fas fa-box"></i> Product</div>
+          <h1 id="productTitle" style="margin: 10px 0 8px">Product</h1>
+          <p id="productDesc" class="muted" style="margin: 0; max-width: 70ch">Loading…</p>
+
+          <div class="product-meta">
+            <div class="product-price" id="productPrice">—</div>
+            <a class="btn btn-outline" href="../marketplace/index.html"><i class="fas fa-arrow-left"></i> Back to Market</a>
+            <a class="btn btn-primary" href="../contact/index.html"><i class="fas fa-envelope-open-text"></i> Request access</a>
+          </div>
+
+          <div class="tag-row" id="productTags" aria-label="Tags"></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="grid-2">
+            <article class="card">
+              <h2 style="margin: 0 0 6px; font-family: var(--font-display)">Works with</h2>
+              <p class="muted" style="margin: 0 0 14px">Filters and architecture compatibility for your stack.</p>
+              <div class="tag-row" id="productWorks" aria-label="Works with"></div>
+            </article>
+            <article class="card">
+              <h2 style="margin: 0 0 6px; font-family: var(--font-display)">What you get</h2>
+              <p class="muted" style="margin: 0 0 14px">A production-ready starting point that you can customize.</p>
+              <ul class="list-check" id="productBullets" aria-label="Included items"></ul>
+            </article>
+          </div>
+
+          <div class="card" style="margin-top: 16px">
+            <h2 style="margin: 0 0 6px; font-family: var(--font-display)">Next steps</h2>
+            <p class="muted" style="margin: 0">
+              Use Embit CLI to scaffold your app, then clone kits/templates from the marketplace into your project.
+              <span class="muted-strong">This page is a placeholder until full product docs/screenshots are added.</span>
+            </p>
+            <div style="margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap">
+              <a class="btn btn-primary" href="../products/embit-cli.html"><i class="fas fa-bolt"></i> Embit CLI</a>
+              <a class="btn btn-outline" href="../docs/index.html"><i class="fas fa-book"></i> Read Docs</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="../assets/logo-white.svg" alt="EVLOV" />
+            <p>Building the future of Flutter development.</p>
+          </div>
+          <div class="footer-links">
+            <h4>Products</h4>
+            <ul>
+              <li><a href="../products/embit-cli.html">Embit CLI</a></li>
+              <li><a href="../products/ignite.html">EVLOV IGNITE</a></li>
+              <li><a href="../products/nexus.html">EVLOV NEXUS</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="../docs/index.html">Documentation</a></li>
+              <li><a href="../blog/index.html">Blog</a></li>
+              <li><a href="../community/index.html">Community</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="../about/index.html">About</a></li>
+              <li><a href="../contact/index.html">Contact</a></li>
+              <li><a href="../privacy/index.html">Privacy</a></li>
+              <li><a href="../terms/index.html">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 EMBITLABS. EVLOV is a product brand.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../assets/site.js?v=20260329-4" defer></script>
+    <script src="../assets/marketplace-product.js?v=20260329-1" defer></script>
+  </body>
+</html>
+

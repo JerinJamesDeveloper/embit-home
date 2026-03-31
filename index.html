@@ -1,1757 +1,472 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embit Labs - Ship Production-Ready Flutter Apps in Minutes | Flutter Starter Kits & CLI</title>
-    <meta name="description"
-        content="Pre-built Flutter Clean Architecture Kits + God-mode CLI Generator. Automate your Flutter development workflow. For indie hackers, SaaS builders, and professional Flutter developers.">
-    <meta name="keywords"
-        content="Flutter, Clean Architecture, Flutter Starter Kit, Flutter CLI, BLoC, Flutter Development, Flutter Templates, Code Generator, Flutter Boilerplate, Flutter Tools, Flutter Automation">
-    <meta name="author" content="Embit Labs">
-
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Embit Labs - Ship Production-Ready Flutter Apps in Minutes">
-    <meta property="og:description"
-        content="Pre-built Flutter Clean Architecture Kits + God-mode CLI Generator. Stop wiring folders. Start shipping features.">
-    <meta property="og:image" content="/og-image.jpg">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Embit Labs - Flutter Development Tools">
-    <meta name="twitter:description" content="Automate your Flutter architecture with pre-built kits and CLI tools.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVLOV Marketplace &middot; Flutter Kits, Templates &amp; Embit CLI</title>
+    <meta
+      name="description"
+      content="EVLOV Marketplace: Embit CLI (free) + EVLOV IGNITE kits/templates (freemium/paid). Build production Flutter apps 10x faster."
+    />
+    <link rel="icon" href="assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
-    <style>
-        :root {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f5f5f5;
-            --bg-tertiary: #eeeeee;
-            --bg-card: #ffffff;
-            --accent-primary: #007bff;
-            --accent-secondary: #ff6600;
-            --accent-purple: #6c5ce7;
-            --text-primary: #000000;
-            --text-secondary: #333333;
-            --text-muted: #666666;
-            --border-color: #dddddd;
-            --glow-blue: rgba(0, 123, 255, 0.3);
-            --glow-orange: rgba(255, 102, 0, 0.3);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Manrope', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Typography */
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        code,
-        pre {
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.2rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--accent-primary);
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: var(--text-primary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-primary);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Buttons */
-        .btn {
-            padding: 0.85rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-            border: none;
-            cursor: pointer;
-            font-family: 'Manrope', sans-serif;
-        }
-
-        .btn-primary {
-            background: var(--accent-primary);
-            color: #ffffff;
-            box-shadow: 0 0 30px var(--glow-blue);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 40px var(--glow-blue);
-        }
-
-        .btn-secondary {
-            background: var(--accent-secondary);
-            color: #ffffff;
-            box-shadow: 0 0 30px var(--glow-orange);
-        }
-
-        .btn-secondary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 40px var(--glow-orange);
-        }
-
-        .btn-ghost {
-            background: transparent;
-            color: var(--text-secondary);
-            padding: 0.85rem 1.5rem;
-            border: 2px solid var(--border-color);
-        }
-
-        .btn-ghost:hover {
-            color: var(--accent-primary);
-            border-color: var(--accent-primary);
-        }
-
-        /* Hero Section with Video Background */
-        .hero-video-section {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            padding-top: 80px;
-        }
-
-        .video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .video-background video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg,
-                    rgba(255, 255, 255, 0.9) 0%,
-                    rgba(255, 255, 255, 0.85) 50%,
-                    rgba(0, 123, 255, 0.1) 100%);
-            z-index: 1;
-        }
-
-        .video-fallback {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 4rem 0;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(0, 123, 255, 0.1);
-            border: 1px solid var(--accent-primary);
-            color: var(--accent-primary);
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            letter-spacing: 0.5px;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-content .subtitle {
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        .hero-content .tagline {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            font-style: italic;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 4rem;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 4rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--accent-primary);
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Section Styles */
-        section {
-            padding: 8rem 0;
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .section-badge {
-            display: inline-block;
-            background: rgba(0, 255, 163, 0.1);
-            border: 1px solid var(--accent-primary);
-            color: var(--accent-primary);
-            padding: 0.4rem 1.2rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-subtitle {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Demo Videos Section */
-        .demo-videos {
-            background: var(--bg-secondary);
-        }
-
-        .videos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 3rem;
-        }
-
-        .video-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .video-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-primary);
-            box-shadow: 0 20px 60px var(--glow-blue);
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            background: var(--bg-primary);
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .video-info {
-            padding: 2rem;
-        }
-
-        .video-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-            color: var(--text-primary);
-        }
-
-        .video-description {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Problem Section */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .problem-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2.5rem;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .problem-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: #ff5858;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .problem-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 88, 88, 0.3);
-        }
-
-        .problem-card:hover::before {
-            opacity: 1;
-        }
-
-        .problem-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .problem-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: #ff5858;
-        }
-
-        .problem-card p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* Solution Section */
-        .solution-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 3rem;
-        }
-
-        .solution-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .solution-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-        }
-
-        .solution-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .solution-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .solution-card p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .solution-card ul {
-            list-style: none;
-        }
-
-        .solution-card li {
-            color: var(--text-secondary);
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .solution-card li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--accent-primary);
-            font-weight: bold;
-        }
-
-        /* Product Cards */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .product-card {
-            background: var(--bg-card);
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
-            padding: 3rem;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-primary);
-            box-shadow: 0 20px 60px var(--glow-blue);
-        }
-
-        .product-badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent-primary);
-            color: var(--bg-primary);
-            padding: 0.4rem 1.2rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .product-card.featured {
-            border-color: var(--accent-primary);
-            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 255, 163, 0.05) 100%);
-        }
-
-        .product-price {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            color: var(--accent-primary);
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .product-name {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .product-tagline {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .product-features {
-            list-style: none;
-            margin: 2rem 0;
-        }
-
-        .product-features li {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            padding-left: 1.8rem;
-            position: relative;
-        }
-
-        .product-features li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent-primary);
-            font-weight: bold;
-        }
-
-        /* Founder Section */
-        .founder-section {
-            background: var(--bg-secondary);
-        }
-
-        .founder-content {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 4rem;
-            align-items: center;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .founder-image {
-            position: relative;
-        }
-
-        .founder-avatar {
-            width: 300px;
-            height: 300px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            border: 3px solid var(--border-color);
-            box-shadow: 0 20px 60px var(--glow-blue);
-        }
-
-        .founder-text h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .founder-role {
-            color: var(--accent-primary);
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-        }
-
-        .founder-story {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .founder-vision {
-            background: var(--bg-card);
-            border-left: 4px solid var(--accent-primary);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            font-style: italic;
-            color: var(--text-secondary);
-        }
-
-        .founder-social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.7rem 1.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .social-link:hover {
-            border-color: var(--accent-primary);
-            color: var(--accent-primary);
-            transform: translateY(-2px);
-        }
-
-        /* Contact Section */
-        .contact-section {
-            background: var(--bg-primary);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 4rem;
-        }
-
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-methods {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .contact-method {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.2rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            transition: all 0.3s;
-        }
-
-        .contact-method:hover {
-            border-color: var(--accent-primary);
-            transform: translateX(5px);
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-            color: var(--accent-primary);
-        }
-
-        .contact-details span {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 0.3rem;
-        }
-
-        .contact-details a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .contact-form {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 3rem;
-        }
-
-        .form-notice {
-            background: rgba(176, 112, 255, 0.1);
-            border: 1px solid var(--accent-purple);
-            color: var(--accent-purple);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-family: 'Manrope', sans-serif;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px var(--glow-blue);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        /* Roadmap Section */
-        .roadmap-section {
-            background: var(--bg-secondary);
-        }
-
-        .roadmap-grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .roadmap-item {
-            display: grid;
-            grid-template-columns: 150px 1fr;
-            gap: 2rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-
-        .roadmap-item:hover {
-            border-color: var(--accent-primary);
-            transform: translateX(10px);
-        }
-
-        .roadmap-status {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .status-badge {
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .status-badge.done {
-            background: rgba(0, 255, 163, 0.2);
-            color: var(--accent-primary);
-        }
-
-        .status-badge.progress {
-            background: rgba(0, 217, 255, 0.2);
-            color: var(--accent-secondary);
-        }
-
-        .status-badge.planned {
-            background: rgba(176, 112, 255, 0.2);
-            color: var(--accent-purple);
-        }
-
-        .roadmap-details h4 {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .roadmap-details p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            padding: 4rem 0 2rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-brand h3 {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent-primary);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-brand p {
-            color: var(--text-muted);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .footer-social a:hover {
-            border-color: var(--accent-primary);
-            color: var(--accent-primary);
-            transform: translateY(-2px);
-        }
-
-        .footer-column h4 {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .footer-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-primary);
-        }
-
-        .footer-bottom {
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Scroll Reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-
-            .contact-grid,
-            .founder-content {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .solution-grid,
-            .product-grid,
-            .videos-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .btn {
-                text-align: center;
-            }
-
-            section {
-                padding: 4rem 0;
-            }
-
-            .founder-avatar {
-                width: 100%;
-                height: 250px;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .roadmap-item {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Loading animation for video */
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        .video-loading {
-            animation: pulse 2s ease-in-out infinite;
-        }
-    </style>
-</head>
-
-<body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">EMBIT<span>.labs</span></a>
-            <ul class="nav-links">
-                <li><a href="#demo">Demo</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#founder">About</a></li>
-                <li><a href="#roadmap">Roadmap</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#products" class="btn btn-primary">Get Started</a></li>
-            </ul>
-            <button class="mobile-menu-btn">☰</button>
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+	    <link rel="stylesheet" href="assets/site.css?v=20260329-4" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a href="index.html" class="logo" aria-label="EVLOV home">
+          <img src="assets/logo.svg" alt="EVLOV" />
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="marketplace/index.html">Marketplace</a></li>
+            <li><a href="docs/index.html">Documentation</a></li>
+            <li><a href="about/index.html">About</a></li>
+            <li><a href="contact/index.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-cta">
+          <a class="btn btn-primary" href="docs/index.html#commands">Get Started</a>
         </div>
-    </nav>
 
-    <!-- Hero Section with Video Background -->
-    <section class="hero-video-section">
-        <div class="video-background">
-            <video autoplay muted loop playsinline
-                poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080'%3E%3Crect fill='%230d0d12' width='1920' height='1080'/%3E%3C/svg%3E">
-                <!-- Replace with your actual video URL -->
-                <source src="hero-background.mp4" type="video/mp4">
-                <!-- Fallback to static background -->
-            </video>
-            <div class="video-fallback"></div>
-        </div>
-        <div class="video-overlay"></div>
+        <button class="mobile-menu-toggle" type="button" aria-label="Open menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
 
+    <main>
+      <section class="hero hero-showcase">
         <div class="container">
+          <div class="hero-grid">
             <div class="hero-content">
-                <div class="hero-badge">⚡ Ship 10x Faster</div>
-                <h1>Ship Production-Ready<br>Flutter Apps in Minutes,<br>Not Weeks.</h1>
-                <p class="subtitle">Pre-built Clean Architecture Kits + God-mode CLI Generator</p>
-                <p class="tagline">Stop wiring folders. Start shipping features.</p>
+              <h1>
+                Build Flutter Apps<br />
+                <span class="gradient-text">10x Faster</span>
+              </h1>
+              <p>Opinionated CLI automation + production-ready kits and templates so you focus on features, not scaffolding.</p>
+              <div class="hero-cta">
+                <a href="marketplace/index.html" class="btn btn-primary">Explore Marketplace</a>
+                <a href="docs/index.html" class="btn btn-outline"><i class="fas fa-book"></i> Read Docs</a>
+              </div>
 
-                <div class="hero-cta">
-                    <a href="#products" class="btn btn-primary">Get Ignite – $39</a>
-                    <a href="#products" class="btn btn-primary">Get Nexus – $79</a>
-                    <a href="#demo" class="btn btn-ghost">Watch Demo →</a>
+              <div class="hero-stats" aria-label="Marketplace stats">
+                <div class="stat">
+                  <strong>&lt;10 min</strong>
+                  <span>First setup</span>
                 </div>
+                <div class="stat">
+                  <strong>iOS &middot; Android &middot; Web</strong>
+                  <span>Multi-platform</span>
+                </div>
+                <div class="stat">
+                  <strong>Kits + templates</strong>
+                  <span>Workflow-ready</span>
+                </div>
+              </div>
 
-                <!-- <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">2.4K+</div>
-                        <div class="stat-label">GitHub Stars</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">1,850+</div>
-                        <div class="stat-label">Downloads</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Developers</div>
-                    </div>
-                </div> -->
             </div>
-        </div>
-    </section>
 
-    <!-- Demo Videos Section -->
-    <section id="demo" class="demo-videos reveal">
+            <div class="hero-media" id="demo">
+              <div
+                class="video-placeholder video-card"
+                data-video-id="dQw4w9WgXcQ"
+                data-video-title="EVLOV Marketplace Demo"
+                role="button"
+                tabindex="0"
+                aria-label="Play demo video"
+              >
+                <div class="video-orb" aria-hidden="true">
+                  <div class="orb"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-wave" aria-hidden="true"></div>
+                <div class="video-time" aria-hidden="true">2:34</div>
+                <div class="video-play-btn"><i class="fas fa-play"></i> Watch demo</div>
+              </div>
+              <p class="muted" style="margin: 10px 0 0; font-size: var(--text-sm)">
+                Video placeholder: click to open a YouTube modal (replace the video id anytime).
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="products">
         <div class="container">
-            <div class="section-header">
-                <div class="section-badge">🎥 See It In Action</div>
-                <h2 class="section-title">Watch It In Action</h2>
-                <p class="section-subtitle">See how Embit automates your Flutter workflow. Real demos, real speed, real
-                    results.</p>
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Featured products</h2>
+              <p class="section-desc">Embit CLI is free. EVLOV IGNITE and EVLOV NEXUS are premium building blocks.</p>
             </div>
+            <a class="btn btn-outline" href="marketplace/index.html"><i class="fas fa-store"></i> Marketplace</a>
+          </div>
 
-            <div class="videos-grid">
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe loading="lazy" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                            title="CLI Project Initialization Demo"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-info">
-                        <h3 class="video-title">⚡ CLI Magic in 3 Minutes</h3>
-                        <p class="video-description">Watch as we initialize a complete production-ready Flutter project
-                            with clean architecture, BLoC, DI, and auth flow in under 3 minutes.</p>
-                    </div>
-                </div>
-
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe loading="lazy" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                            title="Feature Generation Walkthrough"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-info">
-                        <h3 class="video-title">🚀 Feature Scaffolding Deep Dive</h3>
-                        <p class="video-description">Complete walkthrough of generating features with automatic layer
-                            wiring, route registration, and navigation setup. See the magic happen in real-time.</p>
-                    </div>
-                </div>
-
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe loading="lazy" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                            title="Architecture Explanation"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-info">
-                        <h3 class="video-title">🏗️ Architecture Breakdown</h3>
-                        <p class="video-description">Deep dive into the Clean Architecture structure, BLoC patterns,
-                            dependency injection setup, and RBAC system. Learn why this architecture scales.</p>
-                    </div>
-                </div>
-            </div>
+		          <div class="grid-3">
+		            <article class="card product-card">
+		              <div class="product-thumb-shell">
+		                <img class="product-thumb-img" src="assets/thumbs/embit-cli.svg" alt="" aria-hidden="true" loading="lazy" />
+		                <canvas
+		                  class="product-thumb"
+	                  data-thumb-src="assets/thumbs/embit-cli.svg"
+	                  data-thumb-fit="cover"
+	                  role="img"
+	                  aria-label="Embit CLI thumbnail"
+	                >
+		                  Embit CLI thumbnail
+		                </canvas>
+		              </div>
+		              <div class="product-card-head">
+		                <div>
+		                  <div class="pill"><i class="fas fa-bolt"></i> Flagship</div>
+		                  <h3 class="product-card-title">Embit CLI</h3>
+		                  <p class="muted" style="margin: 0">Architecture-forcing, opinionated CLI that helps you ship faster.</p>
+	                </div>
+	                <div class="price-badge price-free">FREE</div>
+	              </div>
+	              <div class="product-card-actions">
+	                <a class="btn btn-primary" href="products/embit-cli.html">View details</a>
+	                <a class="btn btn-outline" href="docs/index.html">Docs</a>
+	              </div>
+		            </article>
+		
+		            <article class="card product-card">
+		              <div class="product-thumb-shell">
+		                <img class="product-thumb-img" src="assets/thumbs/ignite.svg" alt="" aria-hidden="true" loading="lazy" />
+		                <canvas
+		                  class="product-thumb"
+	                  data-thumb-src="assets/thumbs/ignite.svg"
+	                  data-thumb-fit="cover"
+	                  role="img"
+	                  aria-label="EVLOV IGNITE thumbnail"
+	                >
+		                  EVLOV IGNITE thumbnail
+		                </canvas>
+		              </div>
+		              <div class="product-card-head">
+		                <div>
+		                  <div class="pill"><i class="fas fa-fire"></i> Kit</div>
+		                  <h3 class="product-card-title">EVLOV IGNITE</h3>
+		                  <p class="muted" style="margin: 0">Freemium/paid kits + templates built for real shipping.</p>
+	                </div>
+	                <div class="price-badge price-paid">$39+</div>
+	              </div>
+	              <div class="product-card-actions">
+	                <a class="btn btn-primary" href="products/ignite.html">View details</a>
+	                <a class="btn btn-outline" href="kits/index.html">Browse kits</a>
+	              </div>
+		            </article>
+		
+		            <article class="card product-card">
+		              <div class="product-thumb-shell">
+		                <img class="product-thumb-img" src="assets/thumbs/nexus.svg" alt="" aria-hidden="true" loading="lazy" />
+		                <canvas
+		                  class="product-thumb"
+	                  data-thumb-src="assets/thumbs/nexus.svg"
+	                  data-thumb-fit="cover"
+	                  role="img"
+	                  aria-label="EVLOV NEXUS thumbnail"
+	                >
+		                  EVLOV NEXUS thumbnail
+		                </canvas>
+		              </div>
+		              <div class="product-card-head">
+		                <div>
+		                  <div class="pill"><i class="fas fa-layer-group"></i> Templates</div>
+		                  <h3 class="product-card-title">EVLOV NEXUS</h3>
+		                  <p class="muted" style="margin: 0">Templates for auth, payments, AI, RBAC, and more (NEXUS / NEXUS PRO).</p>
+	                </div>
+	                <div class="price-badge price-paid">$39+</div>
+	              </div>
+	              <div class="product-card-actions">
+	                <a class="btn btn-primary" href="products/nexus.html">View details</a>
+	                <a class="btn btn-outline" href="templates/index.html">Browse templates</a>
+	              </div>
+		            </article>
+		          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Problem Section -->
-    <section id="problem" class="reveal">
+      <section id="features">
         <div class="container">
-            <div class="section-header">
-                <div class="section-badge">⚠️ The Problem</div>
-                <h2 class="section-title">Flutter Projects Get Messy Fast.</h2>
-                <p class="section-subtitle">You know the pain. Every new project starts with the same architectural
-                    headaches.</p>
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">What makes it different</h2>
+              <p class="section-desc">Opinionated defaults + debugged kits/templates designed for real product scale.</p>
             </div>
+            <a class="btn btn-outline" href="docs/index.html"><i class="fas fa-book"></i> Docs</a>
+          </div>
 
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <div class="problem-icon">📁</div>
-                    <h3>Folder Chaos</h3>
-                    <p>Inconsistent structure across projects. No team can agree on where things go. New developers
-                        spend days just understanding the layout.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">🔧</div>
-                    <h3>Manual Feature Wiring</h3>
-                    <p>Every feature needs layers: presentation, domain, data. Hours spent wiring dependencies,
-                        registering routes, updating navigation.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">⏰</div>
-                    <h3>Time Wasted on Setup</h3>
-                    <p>2-3 days configuring BLoC, DI, routing, auth flow. That's 2-3 days NOT building features your
-                        users actually want.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">🔄</div>
-                    <h3>Repeating Boilerplate</h3>
-                    <p>Login screens. Signup flows. Profile pages. RBAC. You've built this 10 times already. Why do it
-                        again?</p>
-                </div>
-            </div>
+          <div class="grid-3">
+            <article class="card">
+              <h3 style="margin: 0 0 6px; font-family: var(--font-display)"><i class="fas fa-shield-check"></i> Production-ready code</h3>
+              <p class="muted" style="margin: 0">Generated scaffolding and kits come pre-checked, debugged, and structured cleanly.</p>
+            </article>
+            <article class="card">
+              <h3 style="margin: 0 0 6px; font-family: var(--font-display)"><i class="fas fa-stopwatch"></i> Setup in minutes</h3>
+              <p class="muted" style="margin: 0">Start from a kit/template and get to feature work quickly, without long setup cycles.</p>
+            </article>
+            <article class="card">
+              <h3 style="margin: 0 0 6px; font-family: var(--font-display)"><i class="fas fa-sitemap"></i> Architecture-first</h3>
+              <p class="muted" style="margin: 0">A disciplined, architecture-forcing workflow that keeps your codebase from getting messy.</p>
+            </article>
+            <article class="card">
+              <h3 style="margin: 0 0 6px; font-family: var(--font-display)"><i class="fas fa-robot"></i> Agentic friendly</h3>
+              <p class="muted" style="margin: 0">Kits include scripts and structure designed to be easier for AI agents to understand and extend.</p>
+            </article>
+            <article class="card">
+              <h3 style="margin: 0 0 6px; font-family: var(--font-display)"><i class="fas fa-mobile-screen-button"></i> Multi-platform</h3>
+              <p class="muted" style="margin: 0">Ship to iOS, Android, and Web with consistent foundations and reusable flows.</p>
+            </article>
+            <article class="card">
+              <h3 style="margin: 0 0 6px; font-family: var(--font-display)"><i class="fas fa-plug-circle-bolt"></i> Integrations ready</h3>
+              <p class="muted" style="margin: 0">Works well with Firebase, Supabase, REST APIs, Stripe, Razorpay, and popular state managers.</p>
+            </article>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- What Is Section -->
-    <section class="reveal" style="background: var(--bg-secondary);">
+      <section id="how">
         <div class="container">
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <h2 class="section-title">Embit Is Not a Template.</h2>
-                <p style="font-size: 1.8rem; font-weight: 700; color: var(--accent-primary); margin-bottom: 3rem;">
-                    It's a Development System.
-                </p>
-
-                <div style="text-align: left; margin: 3rem 0;">
-                    <div
-                        style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem;">
-                        <strong style="color: var(--accent-primary); font-size: 1.1rem;">Structured Framework</strong>
-                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">Foundation layer that provides
-                            scalable clean architecture base.</p>
-                    </div>
-                    <div
-                        style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem;">
-                        <strong style="color: var(--accent-primary); font-size: 1.1rem;">Embit Engine</strong>
-                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">Automation layer that generates and
-                            wires features while enforcing structure.</p>
-                    </div>
-                </div>
-
-                <p
-                    style="font-size: 1.3rem; font-weight: 600; margin-top: 3rem; font-style: italic; color: var(--text-secondary);">
-                    No magic. Just discipline — automated.
-                </p>
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">How it works</h2>
+              <p class="section-desc">A simple flow: setup the CLI, bring a kit/template, then clone into your project.</p>
             </div>
-        </div>
-    </section>
+          </div>
 
-    <!-- Solution Section -->
-    <section id="solution" class="reveal">
+          <div class="grid-3">
+            <article class="card">
+              <div class="pill"><i class="fas fa-terminal"></i> Step 1</div>
+              <h3 style="margin: 10px 0 6px; font-family: var(--font-display)">CLI setup</h3>
+              <p class="muted" style="margin: 0">Install Embit CLI and create the Embit environment.</p>
+              <div class="code-block" aria-label="CLI setup command">
+                <button class="copy-btn" type="button">Copy</button>
+                <pre><code>embit setup</code></pre>
+              </div>
+              <p class="muted" style="margin: 0; font-size: var(--text-sm)"><i class="fas fa-clock"></i> ~3 minutes</p>
+            </article>
+
+            <article class="card">
+              <div class="pill"><i class="fas fa-box-open"></i> Step 2</div>
+              <h3 style="margin: 10px 0 6px; font-family: var(--font-display)">Kit/template setup</h3>
+              <p class="muted" style="margin: 0">Download a kit (start with EVLOV IGNITE), then clone from its path.</p>
+              <div class="code-block" aria-label="Clone a downloaded kit">
+                <button class="copy-btn" type="button">Copy</button>
+                <pre><code>embit clone &lt;path-to-kit&gt;</code></pre>
+              </div>
+              <p class="muted" style="margin: 0; font-size: var(--text-sm)"><i class="fas fa-clock"></i> ~3 minutes</p>
+            </article>
+
+            <article class="card">
+              <div class="pill"><i class="fas fa-wand-magic-sparkles"></i> Step 3</div>
+              <h3 style="margin: 10px 0 6px; font-family: var(--font-display)">Project setup</h3>
+              <p class="muted" style="margin: 0">Create a Flutter app, then choose a downloaded kit/template to clone in.</p>
+              <div class="code-block" aria-label="Project setup commands">
+                <button class="copy-btn" type="button">Copy</button>
+                <pre><code>flutter create my_app
+cd my_app
+embit clone --kit
+# or
+embit clone --template</code></pre>
+              </div>
+              <p class="muted" style="margin: 0; font-size: var(--text-sm)"><i class="fas fa-clock"></i> ~5 minutes</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="integrations">
         <div class="container">
-            <div class="section-header">
-                <div class="section-badge">✨ The Solution</div>
-                <h2 class="section-title">Frameworks + Engines = Complete System</h2>
-                <p class="section-subtitle">Not just templates. Not just CLI. A structured development ecosystem.</p>
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Plays well with your stack</h2>
+              <p class="section-desc">Integrations are first-class in kits/templates so you can ship real apps end-to-end.</p>
             </div>
+          </div>
 
-            <div class="solution-grid">
-                <div class="solution-card">
-                    <div class="solution-icon">🧩</div>
-                    <h3>Embit Frameworks</h3>
-                    <p>Architecture foundation that gives you structure from day one.</p>
-                    <ul>
-                        <li>Clean Architecture enforced</li>
-                        <li>BLoC state management</li>
-                        <li>Dependency Injection setup</li>
-                        <li>Role-Based Access Control</li>
-                        <li>Complete auth screens</li>
-                        <li>Production-ready folder structure</li>
-                        <li>Scalable expansion model</li>
-                    </ul>
-                </div>
-
-                <div class="solution-card">
-                    <div class="solution-icon">⚡</div>
-                    <h3>Embit Engines</h3>
-                    <p>Automation layer that generates and wires features while enforcing discipline.</p>
-                    <ul>
-                        <li>Project initialization</li>
-                        <li>Feature module generation</li>
-                        <li>Use case auto-creation</li>
-                        <li>Auto-wiring repositories & data layers</li>
-                        <li>Model scaffolding</li>
-                        <li>Maintain architectural flow</li>
-                        <li>Enforce structural standards</li>
-                    </ul>
-                </div>
+          <div class="card">
+            <div class="logo-cloud" aria-label="Supported integrations">
+              <span class="logo-chip"><i class="fas fa-fire"></i> Firebase</span>
+              <span class="logo-chip"><i class="fas fa-database"></i> Supabase</span>
+              <span class="logo-chip"><i class="fas fa-link"></i> REST API</span>
+              <span class="logo-chip"><i class="fas fa-credit-card"></i> Stripe</span>
+              <span class="logo-chip"><i class="fas fa-indian-rupee-sign"></i> Razorpay</span>
+              <span class="logo-chip"><i class="fas fa-cubes"></i> Bloc/Cubit</span>
+              <span class="logo-chip"><i class="fas fa-sliders"></i> Provider</span>
+              <span class="logo-chip"><i class="fas fa-bolt"></i> GetX</span>
             </div>
-
-            <div
-                style="max-width: 700px; margin: 4rem auto 0; text-align: center; padding: 2rem; background: rgba(0, 255, 163, 0.05); border: 1px solid var(--accent-primary); border-radius: 12px;">
-                <p style="font-size: 1.2rem; color: var(--text-secondary); font-style: italic; line-height: 1.7;">
-                    No magic. Just discipline — automated.<br>
-                    <strong style="color: var(--accent-primary);">Frameworks give you foundation. Engines give you
-                        automation.</strong>
-                </p>
-            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Products Section -->
-    <section id="products" class="reveal">
+      <section id="pricing">
         <div class="container">
-            <div class="section-header">
-                <div class="section-badge">💎 Products</div>
-                <h2 class="section-title">Choose Your Foundation</h2>
-                <p class="section-subtitle">Frameworks for architecture. Engines for automation. Or bundles for complete
-                    workflow.</p>
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Pricing</h2>
+              <p class="section-desc">Start free with Embit CLI. Buy kits/templates as one-time products when you need them.</p>
             </div>
+            <a class="btn btn-outline" href="marketplace/index.html"><i class="fas fa-store"></i> Browse marketplace</a>
+          </div>
 
-            <div class="product-grid">
-                <!-- Ignite -->
-                <div class="product-card">
-                    <!-- <div class="product-price">$79</div> -->
-                    <div class="product-name">Embit Ignite</div>
-                    <p class="product-tagline">Clean Architecture Foundation for Flutter</p>
-                    <ul class="product-features">
-                        <li>Clean Architecture folder structure</li>
-                        <li>Pre-configured BLoC pattern</li>
-                        <li>Dependency Injection setup</li>
-                        <li>Login & Signup flow</li>
-                        <li>Profile screen</li>
-                        <li>2-role RBAC foundation</li>
-                        <li>Core wiring across layers</li>
-                    </ul>
-                    <div
-                        style="background: rgba(0, 255, 163, 0.05); border-left: 3px solid var(--accent-primary); padding: 1rem; margin: 1.5rem 0; font-size: 0.9rem; color: var(--text-secondary); font-style: italic;">
-                        For solo builders and freelancers who want structure from day one.
-                    </div>
-                    <a href="ignite/" class="btn btn-secondary" style="width: 100%; text-align: center;">Get Ignite</a>
-                </div>
+          <div class="pricing-grid">
+            <article class="card">
+              <div class="pill"><i class="fas fa-bolt"></i> Free</div>
+              <h3 style="margin: 10px 0 6px; font-family: var(--font-display)">Embit CLI</h3>
+              <div class="pricing-price">
+                <strong>$0</strong>
+                <span class="pricing-note">Forever free</span>
+              </div>
+              <ul class="list-check" aria-label="Free tier features">
+                <li><i class="fas fa-check"></i> Opinionated workflows for consistent structure</li>
+                <li><i class="fas fa-check"></i> Setup + cloning for kits/templates</li>
+                <li><i class="fas fa-check"></i> Feature scaffolding foundations (evolving)</li>
+              </ul>
+              <div style="margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap">
+                <a class="btn btn-primary" href="products/embit-cli.html">View details</a>
+                <a class="btn btn-outline" href="docs/index.html#commands">Get started</a>
+              </div>
+            </article>
 
-                <!-- Nexus -->
-                <div class="product-card featured">
-                    <div class="product-badge">Most Popular</div>
-                    <!-- <div class="product-price">$99</div> -->
-                    <div class="product-name">Embit Nexus</div>
-                    <p class="product-tagline">SaaS-Ready Flutter Development Foundation</p>
-                    <ul class="product-features">
-                        <li>Advanced Clean Architecture setup</li>
-                        <li>Production-ready folder organization</li>
-                        <li>Auth & RBAC foundation</li>
-                        <li>Scalable feature expansion model</li>
-                        <li>Stripe-ready payment structure</li>
-                        <li>Environment-ready configuration</li>
-                        <li>Built for team collaboration</li>
-                    </ul>
-                    <div
-                        style="background: rgba(0, 255, 163, 0.05); border-left: 3px solid var(--accent-primary); padding: 1rem; margin: 1.5rem 0; font-size: 0.9rem; color: var(--text-secondary); font-style: italic;">
-                        For product builders who monetize and scale.
-                    </div>
-                    <a href="nexus/" class="btn btn-primary" style="width: 100%; text-align: center;">Get Nexus</a>
-                </div>
-
-                <!-- Engine -->
-                <div class="product-card">
-                    <!-- <div class="product-price">$39</div> -->
-                    <div class="product-name">Embit Engine</div>
-                    <p class="product-tagline">Architecture Automation for Flutter</p>
-                    <ul class="product-features">
-                        <li>Generate feature modules instantly</li>
-                        <li>Auto-create use cases</li>
-                        <li>Auto-wire repositories & data layers</li>
-                        <li>Maintain architectural flow</li>
-                        <li>Reduce manual setup time</li>
-                        <li>Enforce structural standards</li>
-                    </ul>
-                    <div
-                        style="background: rgba(0, 217, 255, 0.05); border-left: 3px solid var(--accent-secondary); padding: 1rem; margin: 1.5rem 0; font-size: 0.9rem; color: var(--text-secondary);">
-                        <strong style="color: var(--accent-secondary);">Ignite Engine:</strong> Free (Feature
-                        generation)<br>
-                        <strong style="color: var(--accent-secondary);">Nexus Engine:</strong> $39 (Full project
-                        init)
-                    </div>
-                    <a href="engine/" class="btn btn-secondary" style="width: 100%; text-align: center;">Get Engine</a>
-                </div>
-            </div>
-
-            <!-- Bundle Note -->
-            <div
-                style="max-width: 800px; margin: 4rem auto 0; text-align: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 2.5rem;">
-                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent-primary);">🧩 Complete Bundles
-                    Available</h3>
-                <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.7;">
-                    Get frameworks + engines together for a complete structured workflow.<br>
-                    <strong style="color: var(--text-primary);">Ignite + Ignite Engine</strong> or <strong
-                        style="color: var(--text-primary);">Nexus + Nexus Engine</strong>
-                </p>
-            </div>
+            <article class="card">
+              <div class="pill"><i class="fas fa-fire"></i> One-time purchase</div>
+              <h3 style="margin: 10px 0 6px; font-family: var(--font-display)">EVLOV kits &amp; templates</h3>
+              <div class="pricing-price">
+                <strong>$39+</strong>
+                <span class="pricing-note">Per product</span>
+              </div>
+              <ul class="list-check" aria-label="Paid tier features">
+                <li><i class="fas fa-check"></i> EVLOV IGNITE starter kits (freemium/paid)</li>
+                <li><i class="fas fa-check"></i> EVLOV NEXUS templates (NEXUS / NEXUS PRO)</li>
+                <li><i class="fas fa-check"></i> Debugged flows (auth, payments, AI, RBAC, more)</li>
+                <li><i class="fas fa-check"></i> Agentic-friendly scripts included</li>
+              </ul>
+              <div style="margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap">
+                <a class="btn btn-primary" href="marketplace/index.html">Browse marketplace</a>
+                <a class="btn btn-outline" href="contact/index.html">Contact</a>
+              </div>
+            </article>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Founder Section -->
-    <section id="founder" class="founder-section reveal">
+      <section id="early-access">
         <div class="container">
-            <div class="section-header">
-                <div class="section-badge">👨‍💻 About</div>
-                <h2 class="section-title">Built By a Developer, For Developers</h2>
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Built in public</h2>
+              <p class="section-desc">This is a new ecosystem—join early and help shape the roadmap.</p>
             </div>
+          </div>
 
-            <div class="founder-content">
-                <div class="founder-image">
-                    <!-- <div class="founder-avatar">👨‍💻</div> -->
-                    <div class> <img src=" " alt=""></div>
-                </div>
-                <div class="founder-text">
-                    <h3>The Story Behind Embit</h3>
-                    <p class="founder-role">Indie Developer & Flutter Architect</p>
-                    <p class="founder-story">
-                        I've built 12 Flutter apps in the last 3 years. MVPs for startups, SaaS platforms, client
-                        projects.
-                        Every single time, I spent the first week setting up the same architecture: Clean Architecture,
-                        BLoC,
-                        dependency injection, auth flows, RBAC. The same folder structure. The same boilerplate.
-                    </p>
-                    <p class="founder-story">
-                        After project #8, I had enough. I automated everything I was repeating. Built starter kits.
-                        Created a CLI that generates features in seconds. What used to take 3 days now takes 10 minutes.
-                    </p>
-                    <div class="founder-vision">
-                        <strong>The Vision:</strong> Every Flutter developer should spend their time building features
-                        users love,
-                        not fighting with folder structures and boilerplate. Embit is the toolkit I wish existed when I
-                        started.
-                    </div>
-                    <div class="founder-social">
-                        <a href="https://github.com/JerinJamesDeveloper" class="social-link" target="_blank">
-                            <span>⚡</span> GitHub
-                        </a>
-                        <a href="https://linkedin.com" class="social-link" target="_blank">
-                            <span>💼</span> LinkedIn
-                        </a>
-                        <a href="https://twitter.com" class="social-link" target="_blank">
-                            <span>🐦</span> Twitter
-                        </a>
-                    </div>
-                </div>
+          <div class="grid-2">
+            <div class="card">
+              <h3 style="margin: 0 0 6px; font-family: var(--font-display)"><i class="fas fa-users"></i> Community first</h3>
+              <p class="muted" style="margin: 0">No testimonials yet—early adopters and feedback drive the next kits and templates.</p>
+              <div style="margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap">
+                <a class="btn btn-primary" href="community/index.html">Join community</a>
+                <a class="btn btn-outline" href="blog/index.html">Read updates</a>
+              </div>
             </div>
+            <div class="card">
+              <h3 style="margin: 0 0 6px; font-family: var(--font-display)"><i class="fas fa-envelope-open-text"></i> Get in touch</h3>
+              <p class="muted" style="margin: 0">Want a kit/template for your workflow? Tell us what you're building.</p>
+              <div style="margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap">
+                <a class="btn btn-primary" href="contact/index.html">Contact EMBITLABS</a>
+                <a class="btn btn-outline" href="docs/index.html">Docs</a>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Roadmap Section -->
-    <section id="roadmap" class="roadmap-section reveal">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-badge">🗺️ Roadmap</div>
-                <h2 class="section-title">What's Next</h2>
-                <p class="section-subtitle">Transparent development. Community-driven features. Built in public.</p>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="assets/logo-white.svg" alt="EVLOV" />
+            <p>Building the future of Flutter development.</p>
+            <div class="social-links" aria-label="Social links">
+              <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+              <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
+          </div>
 
-            <div class="roadmap-grid">
-                <div class="roadmap-item">
-                    <div class="roadmap-status">
-                        <div class="status-badge done">✓ Done</div>
-                        <span style="color: var(--text-muted); font-size: 0.85rem;">Q4 2025</span>
-                    </div>
-                    <div class="roadmap-details">
-                        <h4>Basic & Pro Starter Kits</h4>
-                        <p>Complete Clean Architecture kits with BLoC, DI, RBAC, and auth flows. Production-ready
-                            structure for immediate use.</p>
-                    </div>
-                </div>
+          <div class="footer-links">
+            <h4>Products</h4>
+            <ul>
+              <li><a href="products/embit-cli.html">Embit CLI</a></li>
+              <li><a href="products/ignite.html">EVLOV IGNITE</a></li>
+              <li><a href="products/nexus.html">EVLOV NEXUS</a></li>
+              <li><a href="kits/index.html">Kits</a></li>
+              <li><a href="templates/index.html">Templates</a></li>
+            </ul>
+          </div>
 
-                <div class="roadmap-item">
-                    <div class="roadmap-status">
-                        <div class="status-badge progress">⚡ In Progress</div>
-                        <span style="color: var(--text-muted); font-size: 0.85rem;">Q1 2026</span>
-                    </div>
-                    <div class="roadmap-details">
-                        <h4>CLI Code Generator v1.0</h4>
-                        <p>Command-line tool for project initialization, feature scaffolding, and automatic layer
-                            wiring. Currently in beta testing.</p>
-                    </div>
-                </div>
+          <div class="footer-links">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="docs/index.html">Documentation</a></li>
+              <li><a href="#api">API Reference</a></li>
+              <li><a href="blog/index.html">Blog</a></li>
+              <li><a href="community/index.html">Community</a></li>
+            </ul>
+          </div>
 
-                <div class="roadmap-item">
-                    <div class="roadmap-status">
-                        <div class="status-badge planned">📅 Planned</div>
-                        <span style="color: var(--text-muted); font-size: 0.85rem;">Q2 2026</span>
-                    </div>
-                    <div class="roadmap-details">
-                        <h4>VS Code Extension</h4>
-                        <p>Generate features, navigate architecture, and manage dependencies directly from VS Code.
-                            Right-click context menus for instant scaffolding.</p>
-                    </div>
-                </div>
-
-                <div class="roadmap-item">
-                    <div class="roadmap-status">
-                        <div class="status-badge planned">📅 Planned</div>
-                        <span style="color: var(--text-muted); font-size: 0.85rem;">Q3 2026</span>
-                    </div>
-                    <div class="roadmap-details">
-                        <h4>Advanced Integrations Pack</h4>
-                        <p>Pre-built modules for Firebase, Supabase, payment gateways, analytics, push notifications,
-                            and more. Drop-in solutions for common features.</p>
-                    </div>
-                </div>
-            </div>
+          <div class="footer-links">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="about/index.html">About</a></li>
+              <li><a href="contact/index.html">Contact</a></li>
+              <li><a href="privacy/index.html">Privacy</a></li>
+              <li><a href="terms/index.html">Terms</a></li>
+            </ul>
+          </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section reveal">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-badge">💬 Get In Touch</div>
-                <h2 class="section-title">Let's Build Faster</h2>
-                <p class="section-subtitle">Questions? Feedback? Custom solutions? Let's talk.</p>
-            </div>
-
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Reach Out</h3>
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <div class="contact-icon">📧</div>
-                            <div class="contact-details">
-                                <span>Email</span>
-                                <a href="mailto:hello@embitlabs.dev">hello@embitlabs.dev</a>
-                            </div>
-                        </div>
-                        <div class="contact-method">
-                            <div class="contact-icon">⚡</div>
-                            <div class="contact-details">
-                                <span>GitHub</span>
-                                <a href="https://github.com/embitlabs" target="_blank">@embitlabs</a>
-                            </div>
-                        </div>
-                        <div class="contact-method">
-                            <div class="contact-icon">💼</div>
-                            <div class="contact-details">
-                                <span>LinkedIn</span>
-                                <a href="https://linkedin.com/company/embitlabs" target="_blank">Embit Labs</a>
-                            </div>
-                        </div>
-                        <div class="contact-method">
-                            <div class="contact-icon">💬</div>
-                            <div class="contact-details">
-                                <span>Telegram</span>
-                                <a href="https://t.me/embitlabs" target="_blank">@embitlabs</a>
-                            </div>
-                        </div>
-                        <div class="contact-method">
-                            <div class="contact-icon">🌍</div>
-                            <div class="contact-details">
-                                <span>Location</span>
-                                <span style="color: var(--text-primary); font-weight: 600;">Remote • Global</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-form">
-                    <div class="form-notice">
-                        ⚠️ Contact form requires backend integration. Currently for UI demonstration only.
-                    </div>
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message"
-                                placeholder="Tell us about your project or question..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-                    </form>
-                </div>
-            </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 EMBITLABS. EVLOV is a product brand.</p>
+          <div class="payment-icons" aria-label="Payment methods">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-amex"></i>
+            <i class="fab fa-cc-paypal"></i>
+          </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>EMBIT.labs</h3>
-                    <p>Automating Flutter architecture so developers can focus on what matters: building features users
-                        love.</p>
-                    <div class="footer-social">
-                        <a href="https://github.com/embitlabs" target="_blank">⚡</a>
-                        <a href="https://twitter.com/embitlabs" target="_blank">🐦</a>
-                        <a href="https://linkedin.com/company/embitlabs" target="_blank">💼</a>
-                        <a href="https://t.me/embitlabs" target="_blank">💬</a>
-                    </div>
-                </div>
-
-                <div class="footer-column">
-                    <h4>Products</h4>
-                    <ul class="footer-links">
-                        <li><a href="#products">Ignite Framework</a></li>
-                        <li><a href="#products">Nexus Framework</a></li>
-                        <li><a href="#products">Embit Engine</a></li>
-                        <li><a href="#roadmap">Roadmap</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h4>Resources</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#demo">Video Demos</a></li>
-                        <li><a href="#">API Reference</a></li>
-                        <li><a href="#">GitHub</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h4>Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="#founder">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>© 2026 Embit Labs. Built by developers, for developers. All rights reserved.</p>
-            </div>
-        </div>
+      </div>
     </footer>
 
-    <script>
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+    <div class="modal-backdrop" data-video-modal>
+      <div class="modal" role="dialog" aria-modal="true" aria-label="Video">
+        <div class="modal-header">
+          <div class="modal-title" data-video-title>Video</div>
+          <button class="modal-close" type="button" aria-label="Close" data-video-close>
+            <i class="fas fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <iframe title="Video player" src="about:blank" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offset = 80;
-                    const targetPosition = target.offsetTop - offset;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Scroll reveal animation
-        const revealElements = document.querySelectorAll('.reveal');
-
-        const revealOnScroll = () => {
-            const windowHeight = window.innerHeight;
-            revealElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const revealPoint = 150;
-
-                if (elementTop < windowHeight - revealPoint) {
-                    element.classList.add('active');
-                }
-            });
-        };
-
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll();
-
-        // Video fallback handling
-        const video = document.querySelector('.video-background video');
-        if (video) {
-            video.addEventListener('error', () => {
-                console.log('Video failed to load, using fallback');
-                document.querySelector('.video-fallback').style.opacity = '1';
-            });
-        }
-
-        // Form submission (placeholder)
-        document.querySelector('form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Form submission requires backend integration. This is a UI demonstration.');
-        });
-
-        // Lazy load YouTube iframes on scroll
-        const lazyIframes = document.querySelectorAll('iframe[loading="lazy"]');
-        const iframeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const iframe = entry.target;
-                    iframe.src = iframe.src;
-                    iframeObserver.unobserve(iframe);
-                }
-            });
-        });
-
-        lazyIframes.forEach(iframe => {
-            iframeObserver.observe(iframe);
-        });
-    </script>
-</body>
-
-</html>
+	    <script src="assets/site.js?v=20260329-4" defer></script>
+	  </body>
+	</html>

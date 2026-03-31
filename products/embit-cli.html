@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Embit CLI &middot; EVLOV Marketplace</title>
+    <meta name="description" content="Embit CLI: free automation for Flutter workflows (init/clone/feature). Built for EVLOV kits and templates." />
+    <link rel="icon" href="../assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../assets/site.css?v=20260329-4" />
+    <style>
+      .embit-gallery,
+      .embit-video-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .embit-shot {
+        display: grid;
+        gap: 12px;
+      }
+
+      .embit-shot img {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 1px solid var(--neutral-200);
+        background: #fff;
+      }
+
+      .embit-shot h3 {
+        margin: 0;
+        font-family: var(--font-display);
+      }
+
+      .embit-shot p {
+        margin: 0;
+      }
+
+      @media (max-width: 980px) {
+        .embit-gallery,
+        .embit-video-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a href="../index.html" class="logo" aria-label="EVLOV home">
+          <img src="../assets/logo.svg" alt="EVLOV" />
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="../marketplace/index.html">Marketplace</a></li>
+            <li><a href="../docs/index.html">Documentation</a></li>
+            <li><a href="../about/index.html">About</a></li>
+            <li><a href="../contact/index.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <a class="btn btn-primary" href="../docs/index.html#commands">Get Started</a>
+        </div>
+        <button class="mobile-menu-toggle" type="button" aria-label="Open menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div>
+              <div class="pill"><i class="fas fa-bolt"></i> Free product</div>
+              <h1 style="margin-top: 10px">Embit CLI</h1>
+              <p>Initialize apps, clone marketplace kits, and scaffold features with a consistent workflow.</p>
+              <div class="hero-cta">
+                <a class="btn btn-primary" href="../docs/index.html"><i class="fas fa-book"></i> Read docs</a>
+                <a class="btn btn-outline" href="../index.html"><i class="fas fa-arrow-left"></i> Back</a>
+              </div>
+            </div>
+
+            <div>
+              <div
+                class="video-placeholder video-card"
+                data-video-id="dQw4w9WgXcQ"
+                data-video-title="Embit CLI walkthrough"
+                role="button"
+                tabindex="0"
+                aria-label="Play Embit CLI demo"
+              >
+                <div class="video-orb">
+                  <div class="orb"><i class="fas fa-terminal"></i></div>
+                </div>
+                <div class="video-wave"></div>
+                <div class="video-time">6m 20s</div>
+                <div class="video-play-btn"><i class="fas fa-play"></i> CLI walkthrough</div>
+              </div>
+              <p class="muted" style="margin: 10px 0 0; font-size: var(--text-sm)">
+                Product overview video. Replace the YouTube id with your own demo when ready.
+              </p>
+            </div>
+          </div>
+
+          <div class="marquee" style="margin-top: 18px; --marquee-duration: 44s" aria-label="Embit CLI commands">
+            <div class="marquee-track">
+              <div class="marquee-group" aria-hidden="false">
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-seedling"></i> INIT</div>
+                  <h3 class="marquee-title">Init</h3>
+                  <p class="muted" style="margin: 0">Create a consistent workspace and defaults for EVLOV products.</p>
+                  <div class="marquee-code"><code>embit init my_app</code></div>
+                </article>
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-gears"></i> SETUP</div>
+                  <h3 class="marquee-title">Setup</h3>
+                  <p class="muted" style="margin: 0">Install dependencies and configure your environment.</p>
+                  <div class="marquee-code"><code>embit setup</code></div>
+                </article>
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-clone"></i> CLONE</div>
+                  <h3 class="marquee-title">Clone</h3>
+                  <p class="muted" style="margin: 0">Clone kits/templates from the marketplace into your app.</p>
+                  <div class="marquee-code"><code>embit clone ignite --into my_app</code></div>
+                </article>
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-briefcase"></i> USECASE</div>
+                  <h3 class="marquee-title">Usecase</h3>
+                  <p class="muted" style="margin: 0">Generate a workflow/use-case scaffold you can extend.</p>
+                  <div class="marquee-code"><code>embit usecase checkout</code></div>
+                </article>
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-cube"></i> MODEL</div>
+                  <h3 class="marquee-title">Model</h3>
+                  <p class="muted" style="margin: 0">Create a typed model and wire it into your feature.</p>
+                  <div class="marquee-code"><code>embit model User</code></div>
+                </article>
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-code"></i> FEATURE</div>
+                  <h3 class="marquee-title">Feature</h3>
+                  <p class="muted" style="margin: 0">Generate features with consistent structure and wiring.</p>
+                  <div class="marquee-code"><code>embit feature auth --with bloc</code></div>
+                </article>
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-arrow-rotate-right"></i> UPDATE</div>
+                  <h3 class="marquee-title">Update</h3>
+                  <p class="muted" style="margin: 0">Update kits/templates and refresh generated wiring.</p>
+                  <div class="marquee-code"><code>embit update</code></div>
+                </article>
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-rotate-left"></i> UNDO</div>
+                  <h3 class="marquee-title">Undo</h3>
+                  <p class="muted" style="margin: 0">Rollback the last generator step if needed.</p>
+                  <div class="marquee-code"><code>embit undo</code></div>
+                </article>
+              </div>
+
+              <div class="marquee-group" aria-hidden="true">
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-seedling"></i> INIT</div>
+                  <h3 class="marquee-title">Init</h3>
+                  <p class="muted" style="margin: 0">Create a consistent workspace and defaults for EVLOV products.</p>
+                  <div class="marquee-code"><code>embit init my_app</code></div>
+                </article>
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-gears"></i> SETUP</div>
+                  <h3 class="marquee-title">Setup</h3>
+                  <p class="muted" style="margin: 0">Install dependencies and configure your environment.</p>
+                  <div class="marquee-code"><code>embit setup</code></div>
+                </article>
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-clone"></i> CLONE</div>
+                  <h3 class="marquee-title">Clone</h3>
+                  <p class="muted" style="margin: 0">Clone kits/templates from the marketplace into your app.</p>
+                  <div class="marquee-code"><code>embit clone ignite --into my_app</code></div>
+                </article>
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-briefcase"></i> USECASE</div>
+                  <h3 class="marquee-title">Usecase</h3>
+                  <p class="muted" style="margin: 0">Generate a workflow/use-case scaffold you can extend.</p>
+                  <div class="marquee-code"><code>embit usecase checkout</code></div>
+                </article>
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-cube"></i> MODEL</div>
+                  <h3 class="marquee-title">Model</h3>
+                  <p class="muted" style="margin: 0">Create a typed model and wire it into your feature.</p>
+                  <div class="marquee-code"><code>embit model User</code></div>
+                </article>
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-code"></i> FEATURE</div>
+                  <h3 class="marquee-title">Feature</h3>
+                  <p class="muted" style="margin: 0">Generate features with consistent structure and wiring.</p>
+                  <div class="marquee-code"><code>embit feature auth --with bloc</code></div>
+                </article>
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-arrow-rotate-right"></i> UPDATE</div>
+                  <h3 class="marquee-title">Update</h3>
+                  <p class="muted" style="margin: 0">Update kits/templates and refresh generated wiring.</p>
+                  <div class="marquee-code"><code>embit update</code></div>
+                </article>
+                <article class="card marquee-card">
+                  <div class="pill"><i class="fas fa-rotate-left"></i> UNDO</div>
+                  <h3 class="marquee-title">Undo</h3>
+                  <p class="muted" style="margin: 0">Rollback the last generator step if needed.</p>
+                  <div class="marquee-code"><code>embit undo</code></div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Visual Gallery</h2>
+              <p class="section-desc">A quick look at Embit CLI workflows, kit integration, and generator output.</p>
+            </div>
+          </div>
+
+          <div class="embit-gallery">
+            <article class="card embit-shot">
+              <img src="../assets/thumbs/embit-cli.svg" alt="Embit CLI product preview" loading="lazy" />
+              <div>
+                <h3>CLI Overview</h3>
+                <p class="muted">Overview card you can use for product docs, launch posts, and listing previews.</p>
+              </div>
+            </article>
+            <article class="card embit-shot">
+              <img src="../assets/thumbs/embit-generator-cli.svg" alt="Embit generator CLI preview" loading="lazy" />
+              <div>
+                <h3>Generator Workflow</h3>
+                <p class="muted">Showcase generator command output and consistent feature scaffolding structure.</p>
+              </div>
+            </article>
+            <article class="card embit-shot">
+              <img src="../assets/thumbs/ignite.svg" alt="IGNITE kit integration preview" loading="lazy" />
+              <div>
+                <h3>Kit Integration</h3>
+                <p class="muted">Highlight how Embit CLI and EVLOV IGNITE connect in a single workflow.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Video Library</h2>
+              <p class="section-desc">Add multiple demos for onboarding, walkthroughs, and release highlights.</p>
+            </div>
+          </div>
+
+          <div class="embit-video-grid">
+            <article class="card">
+              <div
+                class="video-placeholder video-card"
+                data-video-id="dQw4w9WgXcQ"
+                data-video-title="Getting Started with Embit CLI"
+                role="button"
+                tabindex="0"
+                aria-label="Play getting started video"
+              >
+                <div class="video-orb">
+                  <div class="orb"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-wave"></div>
+                <div class="video-time">4m 10s</div>
+                <div class="video-play-btn"><i class="fas fa-circle-play"></i> Getting started</div>
+              </div>
+              <h3 style="margin: 12px 0 6px; font-family: var(--font-display)">Getting Started</h3>
+              <p class="muted" style="margin: 0">Install, run setup, and scaffold your first feature in minutes.</p>
+            </article>
+
+            <article class="card">
+              <div
+                class="video-placeholder video-card"
+                data-video-id="M7lc1UVf-VE"
+                data-video-title="Clone and Customize Kits"
+                role="button"
+                tabindex="0"
+                aria-label="Play clone and customize video"
+              >
+                <div class="video-orb">
+                  <div class="orb"><i class="fas fa-clone"></i></div>
+                </div>
+                <div class="video-wave"></div>
+                <div class="video-time">7m 05s</div>
+                <div class="video-play-btn"><i class="fas fa-circle-play"></i> Clone kits</div>
+              </div>
+              <h3 style="margin: 12px 0 6px; font-family: var(--font-display)">Clone and Customize</h3>
+              <p class="muted" style="margin: 0">Learn how to clone marketplace kits and adapt them to your app.</p>
+            </article>
+
+            <article class="card">
+              <div
+                class="video-placeholder video-card"
+                data-video-id="ScMzIvxBSi4"
+                data-video-title="Feature Generator Deep Dive"
+                role="button"
+                tabindex="0"
+                aria-label="Play feature generator deep dive video"
+              >
+                <div class="video-orb">
+                  <div class="orb"><i class="fas fa-code"></i></div>
+                </div>
+                <div class="video-wave"></div>
+                <div class="video-time">8m 40s</div>
+                <div class="video-play-btn"><i class="fas fa-circle-play"></i> Feature deep dive</div>
+              </div>
+              <h3 style="margin: 12px 0 6px; font-family: var(--font-display)">Feature Generator</h3>
+              <p class="muted" style="margin: 0">Explore advanced flags, patterns, and testing-friendly scaffolds.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="download">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Download</h2>
+              <p class="section-desc">Choose your OS. Replace these links with your release URLs when ready.</p>
+            </div>
+          </div>
+
+          <div class="grid-3">
+            <article class="card">
+              <div class="pill"><i class="fab fa-windows"></i> Windows</div>
+              <h3 style="margin: 10px 0 6px; font-family: var(--font-display)">Download for Windows</h3>
+              <p class="muted" style="margin: 0">Installer build for Windows development environments.</p>
+              <ul class="list-check" aria-label="Windows download notes">
+                <li><i class="fas fa-check"></i> Best for Windows + Android Studio</li>
+                <li><i class="fas fa-check"></i> Works with kits/templates cloning workflow</li>
+                <li><i class="fas fa-check"></i> CLI setup: run <code>embit setup</code></li>
+              </ul>
+              <div style="margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap">
+                <a
+                  class="btn btn-primary"
+                  href="mailto:hello@evlov.io?subject=Embit%20CLI%20Download%20(Windows)"
+                  aria-label="Request Windows download"
+                  >Request download</a
+                >
+                <a class="btn btn-outline" href="../docs/index.html#commands">Docs</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="pill"><i class="fab fa-apple"></i> macOS</div>
+              <h3 style="margin: 10px 0 6px; font-family: var(--font-display)">Download for macOS</h3>
+              <p class="muted" style="margin: 0">Native macOS build for Flutter + iOS workflows.</p>
+              <ul class="list-check" aria-label="macOS download notes">
+                <li><i class="fas fa-check"></i> Best for iOS builds and simulators</li>
+                <li><i class="fas fa-check"></i> Works with EVLOV kits/templates</li>
+                <li><i class="fas fa-check"></i> CLI setup: run <code>embit setup</code></li>
+              </ul>
+              <div style="margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap">
+                <a
+                  class="btn btn-primary"
+                  href="mailto:hello@evlov.io?subject=Embit%20CLI%20Download%20(macOS)"
+                  aria-label="Request macOS download"
+                  >Request download</a
+                >
+                <a class="btn btn-outline" href="../docs/index.html#commands">Docs</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="pill"><i class="fab fa-linux"></i> Linux</div>
+              <h3 style="margin: 10px 0 6px; font-family: var(--font-display)">Download for Linux</h3>
+              <p class="muted" style="margin: 0">Linux build for CI, servers, and local dev environments.</p>
+              <ul class="list-check" aria-label="Linux download notes">
+                <li><i class="fas fa-check"></i> Great for CI + headless workflows</li>
+                <li><i class="fas fa-check"></i> Works with kits/templates cloning</li>
+                <li><i class="fas fa-check"></i> CLI setup: run <code>embit setup</code></li>
+              </ul>
+              <div style="margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap">
+                <a
+                  class="btn btn-primary"
+                  href="mailto:hello@evlov.io?subject=Embit%20CLI%20Download%20(Linux)"
+                  aria-label="Request Linux download"
+                  >Request download</a
+                >
+                <a class="btn btn-outline" href="../docs/index.html#commands">Docs</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Commands</h2>
+              <p class="section-desc">Copy/paste friendly commands you can put in docs, onboarding, and READMEs.</p>
+            </div>
+          </div>
+
+          <div class="command-list" data-title="Embit CLI">
+            <div class="command-item">
+              <code>embit init my_app</code>
+              <p class="muted">Creates a new app workspace with EVLOV-ready defaults.</p>
+            </div>
+            <div class="command-item">
+              <code>embit clone ignite --into my_app</code>
+              <p class="muted">Clones an EVLOV IGNITE kit into your project.</p>
+            </div>
+            <div class="command-item">
+              <code>embit feature auth --with bloc --with tests</code>
+              <p class="muted">Scaffolds a feature with your preferred patterns.</p>
+            </div>
+            <div class="command-item">
+              <code>embit help</code>
+              <p class="muted">Discover all commands and examples.</p>
+            </div>
+          </div>
+
+          <div class="code-block" aria-label="CLI example">
+            <button class="copy-btn" type="button">Copy</button>
+            <pre><code>embit init my_app
+embit clone ignite --into my_app
+embit feature home --with bloc
+embit feature auth --with bloc --with tests</code></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="../assets/logo-white.svg" alt="EVLOV" />
+            <p>Building the future of Flutter development.</p>
+            <div class="social-links" aria-label="Social links">
+              <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+              <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Products</h4>
+            <ul>
+              <li><a href="./embit-cli.html">Embit CLI</a></li>
+              <li><a href="./ignite.html">EVLOV IGNITE</a></li>
+              <li><a href="../kits/index.html">Kits</a></li>
+              <li><a href="../templates/index.html">Templates</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="../docs/index.html">Documentation</a></li>
+              <li><a href="../blog/index.html">Blog</a></li>
+              <li><a href="../community/index.html">Community</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="../about/index.html">About</a></li>
+              <li><a href="../contact/index.html">Contact</a></li>
+              <li><a href="../privacy/index.html">Privacy</a></li>
+              <li><a href="../terms/index.html">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 EMBITLABS. EVLOV is a product brand.</p>
+          <div class="payment-icons" aria-label="Payment methods">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-amex"></i>
+            <i class="fab fa-cc-paypal"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="modal-backdrop" data-video-modal>
+      <div class="modal" role="dialog" aria-modal="true" aria-label="Video">
+        <div class="modal-header">
+          <div class="modal-title" data-video-title>Video</div>
+          <button class="modal-close" type="button" aria-label="Close" data-video-close>
+            <i class="fas fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <iframe title="Video player" src="about:blank" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/site.js?v=20260329-4" defer></script>
+  </body>
+</html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ignite Kit &middot; Product &middot; Embit Labs Marketplace</title>
+    <meta
+      name="description"
+      content="Ignite Kit: a fast start Flutter kit built for Embit Engine + CLI. Clone, init, scaffold features, and ship quickly."
+    />
+    <link rel="icon" href="../../images/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/site.css?v=20260329-4" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container">
+        <div class="nav">
+          <a class="brand" href="../../index.html">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <div>EMBIT<span>.labs</span></div>
+          </a>
+          <nav class="navlinks" data-navlinks>
+            <a href="../../marketplace/index.html">Marketplace</a>
+            <a href="../../docs/index.html">Docs</a>
+            <a href="../../index.html#cli">CLI</a>
+            <a href="../../index.html#about">About</a>
+          </nav>
+          <div class="navcta">
+            <a class="btn btnOutline" href="../../marketplace/index.html">Back</a>
+            <button class="menuBtn" type="button" aria-label="Menu" data-menu-btn>&#9776;</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <span class="chip">Kit &middot; $39</span>
+          <h1>Ignite Kit</h1>
+          <p class="muted">
+            A fast, practical kit for shipping Flutter apps with a clean structure. Designed to be used via Embit Engine
+            and the CLI workflow.
+          </p>
+          <div style="margin-top: 16px">
+            <div class="mediaPlaceholder media16x9" role="img" aria-label="Ignite Kit preview placeholder">
+              <div class="playBadge"><span class="playIcon">▶</span> Ignite walkthrough</div>
+            </div>
+          </div>
+          <div class="heroActions">
+            <a class="btn btnOrange" href="#" data-buy="Ignite Kit ($39)">Buy</a>
+            <a class="btn btnOutline" href="../../docs/index.html">Read docs</a>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <h2 class="sectionTitle">Why Ignite</h2>
+          <p class="sectionSub">Strong defaults so you can start building features immediately.</p>
+          <div class="grid3">
+            <div class="card">
+              <h3>Ready structure</h3>
+              <p>Opinionated folders and patterns that fit small-to-medium apps without over-engineering.</p>
+            </div>
+            <div class="card">
+              <h3>CLI-friendly</h3>
+              <p>Pairs with `embit clone` + `embit init` so your setup stays repeatable across projects.</p>
+            </div>
+            <div class="card">
+              <h3>Feature scaffolding</h3>
+              <p>Generate new features consistently using `embit feature`&mdash;avoid copy/paste and drift.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="padding-top: 0">
+        <div class="container">
+          <h2 class="sectionTitle">How to use it</h2>
+          <p class="sectionSub">The workflow is the product: clone → init → build features.</p>
+          <div class="heroCard">
+            <div class="terminal" data-title="Embit CLI" aria-label="Ignite workflow">
+              <code>
+embit init my_app
+embit clone ignite --into my_app
+embit feature home --with bloc
+embit help
+              </code>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footerRow">
+          <div>
+            <div style="font-weight: 900">Embit Labs</div>
+            <div class="muted">Marketplace products built on Embit Engine.</div>
+          </div>
+          <div class="footerLinks">
+            <a href="../../marketplace/index.html">Marketplace</a>
+            <a href="../../docs/index.html">Docs</a>
+            <a href="../../index.html#contact">Contact</a>
+          </div>
+        </div>
+        <div class="muted" style="margin-top: 12px">© 2026 Embit Labs.</div>
+      </div>
+    </footer>
+
+    <div class="modalBackdrop" data-modal-backdrop>
+      <div class="modal" role="dialog" aria-modal="true" aria-label="Purchase">
+        <div class="modalHeader">
+          <div class="modalTitle" data-modal-title>Buy</div>
+          <button class="iconBtn" type="button" aria-label="Close" data-modal-close>✕</button>
+        </div>
+        <p class="muted">Checkout is launching soon. For now, purchases are handled via email.</p>
+        <div class="heroActions">
+          <a class="btn btnPrimary" href="mailto:sales@embit.labs" data-mailto>Email sales</a>
+          <a class="btn btnOutline" href="#" data-modal-close>Not now</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../assets/site.js?v=20260329-4" defer></script>
+  </body>
+</html>

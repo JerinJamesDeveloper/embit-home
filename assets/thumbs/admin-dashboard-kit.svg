@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06121b" />
+      <stop offset="0.55" stop-color="#0ea5e9" stop-opacity="0.22" />
+      <stop offset="1" stop-color="#111827" />
+    </linearGradient>
+    <radialGradient id="glow" cx="18%" cy="18%" r="70%">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity="0.45" />
+      <stop offset="1" stop-color="#38bdf8" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)" />
+  <rect width="1200" height="675" fill="url(#glow)" />
+
+  <g transform="translate(92 104)">
+    <text x="0" y="0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="56" font-weight="900" fill="#ffffff">
+      Admin Dashboard Kit
+    </text>
+    <text x="0" y="56" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="24" font-weight="700" fill="rgba(255,255,255,0.78)">
+      Analytics · Charts · RBAC-ready
+    </text>
+  </g>
+
+  <g transform="translate(92 220)">
+    <rect x="0" y="0" width="760" height="350" rx="26" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.14)" stroke-width="2" />
+    <rect x="36" y="36" width="220" height="120" rx="22" fill="rgba(34, 197, 94, 0.16)" />
+    <rect x="276" y="36" width="220" height="120" rx="22" fill="rgba(59, 130, 246, 0.14)" />
+    <rect x="516" y="36" width="208" height="120" rx="22" fill="rgba(244, 63, 94, 0.12)" />
+    <rect x="36" y="180" width="688" height="140" rx="22" fill="rgba(15, 23, 42, 0.38)" />
+    <path d="M74 294 L160 252 L248 270 L340 220 L428 244 L520 206 L616 228 L704 188" fill="none" stroke="rgba(56, 189, 248, 0.95)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>
+

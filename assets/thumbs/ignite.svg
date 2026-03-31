@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f0a0a" />
+      <stop offset="0.55" stop-color="#7c2d12" />
+      <stop offset="1" stop-color="#111827" />
+    </linearGradient>
+    <radialGradient id="glow" cx="18%" cy="18%" r="70%">
+      <stop offset="0" stop-color="#fb923c" stop-opacity="0.55" />
+      <stop offset="1" stop-color="#fb923c" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="flame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f97316" />
+      <stop offset="1" stop-color="#ef4444" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" rx="0" fill="url(#bg)" />
+  <rect width="1200" height="675" rx="0" fill="url(#glow)" />
+
+  <g transform="translate(760 132)">
+    <rect x="-40" y="-40" width="360" height="360" rx="36" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.16)" stroke-width="2" />
+    <path
+      d="M140 38c18 52-30 78-30 118 0 34 28 60 62 60 42 0 76-34 76-76 0-44-34-72-48-102-10-22-8-40-6-58-22 14-46 34-54 58z"
+      fill="url(#flame)"
+      opacity="0.95"
+    />
+    <path
+      d="M160 118c10 26-16 40-16 58 0 18 14 32 32 32 22 0 40-18 40-40 0-22-18-36-26-52-6-12-4-22-4-34-12 8-22 18-26 36z"
+      fill="#fde68a"
+      opacity="0.9"
+    />
+  </g>
+
+  <g transform="translate(96 170)">
+    <text x="0" y="0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="64" font-weight="900" fill="#ffffff">
+      EVLOV IGNITE
+    </text>
+    <text x="0" y="62" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="26" font-weight="700" fill="rgba(255,255,255,0.82)">
+      Kits + templates that ship: freemium and premium packs
+    </text>
+    <g transform="translate(0 108)" opacity="0.9">
+      <rect x="0" y="0" width="520" height="12" rx="6" fill="rgba(255,255,255,0.14)" />
+      <rect x="0" y="40" width="460" height="12" rx="6" fill="rgba(255,255,255,0.14)" />
+      <rect x="0" y="80" width="500" height="12" rx="6" fill="rgba(255,255,255,0.14)" />
+      <rect x="0" y="120" width="410" height="12" rx="6" fill="rgba(255,255,255,0.14)" />
+      <rect x="0" y="160" width="480" height="12" rx="6" fill="rgba(255,255,255,0.14)" />
+    </g>
+  </g>
+</svg>

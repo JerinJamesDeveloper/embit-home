@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06121b" />
+      <stop offset="0.55" stop-color="#0f766e" />
+      <stop offset="1" stop-color="#111827" />
+    </linearGradient>
+    <radialGradient id="glow" cx="20%" cy="15%" r="70%">
+      <stop offset="0" stop-color="#2dd4bf" stop-opacity="0.5" />
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="675" rx="0" fill="url(#bg)" />
+  <rect width="1200" height="675" rx="0" fill="url(#glow)" />
+
+  <g transform="translate(760 132)">
+    <rect x="-40" y="-40" width="360" height="360" rx="36" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.16)" stroke-width="2" />
+    <g transform="translate(40 40)">
+      <rect x="0" y="0" width="160" height="160" rx="22" fill="rgba(45, 212, 191, 0.22)" stroke="rgba(255,255,255,0.18)" stroke-width="2" />
+      <rect x="70" y="60" width="160" height="160" rx="22" fill="rgba(59, 130, 246, 0.22)" stroke="rgba(255,255,255,0.18)" stroke-width="2" />
+      <rect x="20" y="130" width="160" height="160" rx="22" fill="rgba(16, 185, 129, 0.18)" stroke="rgba(255,255,255,0.18)" stroke-width="2" />
+    </g>
+  </g>
+
+  <g transform="translate(96 170)">
+    <text x="0" y="0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="64" font-weight="900" fill="#ffffff">
+      EVLOV NEXUS
+    </text>
+    <text x="0" y="62" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" font-size="26" font-weight="700" fill="rgba(255,255,255,0.82)">
+      Templates for auth, payments, AI, RBAC, and more
+    </text>
+    <g transform="translate(0 118)" opacity="0.92">
+      <rect x="0" y="0" width="560" height="72" rx="18" fill="rgba(255,255,255,0.08)" />
+      <rect x="20" y="22" width="240" height="12" rx="6" fill="rgba(255,255,255,0.16)" />
+      <rect x="20" y="42" width="360" height="12" rx="6" fill="rgba(255,255,255,0.14)" />
+
+      <rect x="0" y="96" width="560" height="72" rx="18" fill="rgba(255,255,255,0.06)" />
+      <rect x="20" y="118" width="300" height="12" rx="6" fill="rgba(255,255,255,0.16)" />
+      <rect x="20" y="138" width="320" height="12" rx="6" fill="rgba(255,255,255,0.14)" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marketplace · EVLOV</title>
+    <meta name="description" content="EVLOV Marketplace: production-ready Flutter kits, templates, and AI modules." />
+    <link rel="icon" href="../assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../assets/marketplace-light.css?v=20260329-1" />
+  </head>
+  <body class="market-light">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="../index.html" class="logo" aria-label="EVLOV home">EV<span>LOV</span></a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="./index.html" class="active">Marketplace</a></li>
+            <li><a href="../docs/index.html">Documentation</a></li>
+            <li><a href="../about/index.html">About</a></li>
+            <li><a href="../contact/index.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header-right">
+          <a class="btn btn-outline" href="../docs/index.html"><i class="fas fa-book"></i> Docs</a>
+          <a class="btn btn-primary" href="../docs/index.html#commands"><i class="fas fa-terminal"></i> Get Started</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <div class="pill"><i class="fas fa-store"></i> EVLOV Market</div>
+              <h1>Build faster.<br /><span>Ship smarter.</span></h1>
+              <p>
+                Production-ready Flutter kits, templates, and AI modules — curated for serious developers. Stop rebuilding
+                from scratch.
+              </p>
+
+              <div class="search-bar" role="search" aria-label="Search marketplace">
+                <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                <input type="search" id="marketSearch" placeholder="Search kits, templates, auth, payments…" autocomplete="off" />
+                <button class="btn btn-primary" id="searchBtn" type="button" aria-label="Search">
+                  <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+
+              <div class="chips" id="categoryChips" aria-label="Categories">
+                <button class="chip active" type="button" data-cat="all">All</button>
+                <button class="chip" type="button" data-cat="kits">Kits</button>
+                <button class="chip" type="button" data-cat="templates">Templates</button>
+                <button class="chip" type="button" data-cat="ai">AI Modules</button>
+                <button class="chip" type="button" data-cat="cli">CLI &amp; Tools</button>
+              </div>
+
+              <div class="hero-stats" aria-label="Marketplace stats">
+                <div class="stat-item">
+                  <span class="stat-num">48+</span>
+                  <span class="stat-label">Products</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-num">12k+</span>
+                  <span class="stat-label">Downloads</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-num">4.9★</span>
+                  <span class="stat-label">Avg Rating</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-num">Free</span>
+                  <span class="stat-label">Starter Kits</span>
+                </div>
+              </div>
+            </div>
+
+            <aside class="featured-card" aria-label="Featured product">
+              <div class="badge">🔥 IGNITE Spring Drop</div>
+              <h3>SaaS Starter Template</h3>
+              <p>Launch a full Flutter SaaS in minutes. Auth, billing, onboarding, dashboard — all wired up.</p>
+              <div class="featured-preview" aria-label="SaaS Starter highlights">
+                <div class="preview-item">
+                  <div class="p-icon">🔐</div>
+                  <div class="p-label">Auth</div>
+                  <div class="p-val">Supabase + Firebase</div>
+                </div>
+                <div class="preview-item">
+                  <div class="p-icon">💳</div>
+                  <div class="p-label">Payments</div>
+                  <div class="p-val">Stripe Ready</div>
+                </div>
+                <div class="preview-item">
+                  <div class="p-icon">🏗️</div>
+                  <div class="p-label">Architecture</div>
+                  <div class="p-val">Clean + BLoC</div>
+                </div>
+                <div class="preview-item">
+                  <div class="p-icon">🎨</div>
+                  <div class="p-label">Screens</div>
+                  <div class="p-val">30+ screens</div>
+                </div>
+              </div>
+              <div class="price-tag">
+                <div>
+                  <span class="price">$79</span>
+                  <span class="price-old">$129</span>
+                </div>
+                <a class="btn btn-primary" href="../products/marketplace-product.html#saas-starter-template"
+                  ><i class="fas fa-rocket"></i> View details</a
+                >
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="catalog">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Marketplace</h2>
+              <p class="section-desc">Search, filter, and sort products. Click any item to view details.</p>
+            </div>
+            <span class="result-count" id="resultCount">Showing 0 products</span>
+          </div>
+
+          <div class="filters-bar" aria-label="Filters">
+            <div class="filter-group">
+              <label for="sortSelect">Sort</label>
+              <select class="filter-select" id="sortSelect">
+                <option value="popular">Popular</option>
+                <option value="newest">Newest</option>
+                <option value="price_asc">Price ↑</option>
+                <option value="price_desc">Price ↓</option>
+              </select>
+            </div>
+            <div class="filter-divider" aria-hidden="true"></div>
+            <div class="filter-group">
+              <label>Price</label>
+              <div class="check-group">
+                <label class="check-label"><input type="checkbox" class="priceFilter" value="free" /> Free</label>
+                <label class="check-label"><input type="checkbox" class="priceFilter" value="paid" /> Paid</label>
+                <label class="check-label"><input type="checkbox" class="priceFilter" value="freemium" /> Freemium</label>
+              </div>
+            </div>
+            <div class="filter-divider" aria-hidden="true"></div>
+            <div class="filter-group">
+              <label>Works with</label>
+              <div class="check-group">
+                <label class="check-label"><input type="checkbox" class="worksFilter" value="BLoC" /> BLoC</label>
+                <label class="check-label"><input type="checkbox" class="worksFilter" value="Riverpod" /> Riverpod</label>
+                <label class="check-label"><input type="checkbox" class="worksFilter" value="Firebase" /> Firebase</label>
+                <label class="check-label"><input type="checkbox" class="worksFilter" value="Supabase" /> Supabase</label>
+                <label class="check-label"><input type="checkbox" class="worksFilter" value="REST API" /> REST API</label>
+              </div>
+            </div>
+            <button class="btn btn-ghost clear-btn" id="clearFilters" type="button">Clear</button>
+          </div>
+
+          <div id="marketContent"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="../index.html" class="logo">EV<span style="color: var(--accent)">LOV</span></a>
+            <p>Building the future of Flutter development. Production-grade tools for serious devs.</p>
+            <div class="social-links" aria-label="Social links">
+              <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+              <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Products</h4>
+            <ul>
+              <li><a href="../products/embit-cli.html">Embit CLI</a></li>
+              <li><a href="../products/ignite.html">EVLOV IGNITE</a></li>
+              <li><a href="../kits/index.html">Kits</a></li>
+              <li><a href="../templates/index.html">Templates</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="../docs/index.html">Documentation</a></li>
+              <li><a href="../blog/index.html">Blog</a></li>
+              <li><a href="../community/index.html">Community</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="../about/index.html">About</a></li>
+              <li><a href="../contact/index.html">Contact</a></li>
+              <li><a href="../privacy/index.html">Privacy</a></li>
+              <li><a href="../terms/index.html">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 EMBITLABS. EVLOV is a product brand.</p>
+          <div class="payment-icons" aria-label="Payment methods">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-amex"></i>
+            <i class="fab fa-cc-paypal"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../assets/marketplace-dark.js?v=20260329-1" defer></script>
+  </body>
+</html>

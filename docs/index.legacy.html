@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Docs &middot; Embit Engine &amp; Generator &middot; Embit Labs</title>
+    <meta
+      name="description"
+      content="Documentation for Embit Engine and the Embit Generator CLI: init, clone, feature, templates, and help commands."
+    />
+    <link rel="icon" href="../images/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/site.css?v=20260329-4" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container">
+        <div class="nav">
+          <a class="brand" href="../index.html">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <div>EMBIT<span>.labs</span></div>
+          </a>
+          <nav class="navlinks" data-navlinks>
+            <a href="../marketplace/index.html">Marketplace</a>
+            <a href="../docs/index.html">Docs</a>
+            <a href="../index.html#cli">CLI</a>
+            <a href="../index.html#about">About</a>
+          </nav>
+          <div class="navcta">
+            <a class="btn btnOutline" href="../marketplace/index.html">Marketplace</a>
+            <button class="menuBtn" type="button" aria-label="Menu" data-menu-btn>&#9776;</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <span class="chip">Docs</span>
+          <h1>Embit Engine & Generator</h1>
+          <p class="muted">
+            Embit is a developer-first workflow: clone a kit, initialize your app, generate features, and keep structure
+            consistent. This page is the product documentation for the Embit Generator CLI.
+          </p>
+          <div style="margin-top: 16px">
+            <div class="mediaPlaceholder media16x9" role="img" aria-label="Docs video placeholder">
+              <div class="playBadge"><span class="playIcon">▶</span> Getting started (YouTube)</div>
+            </div>
+          </div>
+          <div class="heroActions">
+            <a class="btn btnPrimary" href="#commands">Jump to commands</a>
+            <a class="btn btnOutline" href="../marketplace/index.html">Browse marketplace</a>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="docsLayout">
+            <aside class="sidebar" aria-label="Docs navigation">
+              <a href="#install">Install</a>
+              <a href="#concepts">Concepts</a>
+              <a href="#workflow">Workflow</a>
+              <a href="#commands">Commands</a>
+              <a href="#features">Feature scaffolding</a>
+              <a href="#help">Help & support</a>
+            </aside>
+
+            <article class="doc">
+              <div class="note">
+                <div style="font-weight: 900; margin-bottom: 6px">Note</div>
+                <div class="muted">
+                  Command names and flags below are documented to match your product messaging (init/clone/feature/help).
+                  If you want these docs to match the exact CLI syntax, tell me the real commands/flags and I’ll update
+                  everything to be exact.
+                </div>
+              </div>
+
+              <h2 id="install">Install</h2>
+              <p class="muted">
+                Install the Embit CLI once, then use it across projects to clone kits and scaffold features.
+              </p>
+              <pre><code># Example (update to your real install method)
+embit --version</code></pre>
+
+              <h2 id="concepts">Concepts</h2>
+              <h3>Kits</h3>
+              <p class="muted">
+                Kits are full app foundations (Ignite, Nexus, etc.). They’re designed to be cloned via the CLI so you
+                start from a real, production-grade structure.
+              </p>
+
+              <h3>Templates & add-ons</h3>
+              <p class="muted">
+                Templates are reusable screens/components. Add-ons are drop-in modules (Auth, Payments, etc.) that can be
+                scaffolded into your codebase while preserving structure.
+              </p>
+
+              <h2 id="workflow">Workflow</h2>
+              <pre><code># 1) Create / prepare your app folder
+embit init my_app
+
+# 2) Clone a kit from the marketplace into it
+embit clone ignite --into my_app
+
+# 3) Scaffold features (repeat forever)
+embit feature auth --with bloc --with tests
+
+# 4) Learn and discover
+embit help</code></pre>
+
+              <h2>Best practices</h2>
+              <ul>
+                <li>Use the CLI for all features so the structure stays consistent across teammates.</li>
+                <li>Prefer kits + add-ons over copy/paste to avoid drift and missing wiring.</li>
+                <li>Commit after each generated feature to keep diffs small and reviewable.</li>
+              </ul>
+
+              <h2 id="commands">Commands</h2>
+
+              <h3><span class="mono">embit init</span></h3>
+              <p class="muted">Creates a new app workspace with Embit-ready defaults.</p>
+              <pre><code>embit init my_app
+embit init my_app --org com.example --platforms android,ios,web</code></pre>
+
+              <h3><span class="mono">embit clone</span></h3>
+              <p class="muted">Clones a kit/template into a project (from your marketplace catalog).</p>
+              <pre><code>embit clone ignite --into my_app
+embit clone nexus --into my_app
+embit clone template:dashboard --into my_app</code></pre>
+
+              <h3><span class="mono">embit feature</span></h3>
+              <p class="muted">Scaffolds a new feature module with your chosen patterns and optional wiring.</p>
+              <pre><code>embit feature home
+embit feature auth --with bloc --with tests
+embit feature payments --with templates</code></pre>
+
+              <h3><span class="mono">embit help</span></h3>
+              <p class="muted">Shows command help and examples.</p>
+              <pre><code>embit help
+embit help clone
+embit help feature</code></pre>
+
+              <h2 id="features">Feature scaffolding</h2>
+              <p class="muted">
+                Feature scaffolding is the fastest way to stay consistent. A single command can create the full folder
+                layout (data/domain/presentation, or your preferred structure), plus wiring and boilerplate.
+              </p>
+              <pre><code># Example: generate an "auth" feature with BLoC and tests
+embit feature auth --with bloc --with tests</code></pre>
+
+              <h2 id="help">Help & support</h2>
+              <p class="muted">
+                If you need help picking the right kit or setting up your workflow, contact us and we’ll guide you.
+              </p>
+              <div class="heroActions">
+                <a class="btn btnPrimary" href="mailto:hello@embit.labs?subject=Embit%20support">Email support</a>
+                <a class="btn btnOutline" href="../marketplace/index.html">Marketplace</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footerRow">
+          <div>
+            <div style="font-weight: 900">Embit Labs</div>
+            <div class="muted">Docs for Embit Engine + Generator CLI.</div>
+          </div>
+          <div class="footerLinks">
+            <a href="../index.html">Home</a>
+            <a href="../marketplace/index.html">Marketplace</a>
+            <a href="../index.html#contact">Contact</a>
+          </div>
+        </div>
+        <div class="muted" style="margin-top: 12px">© 2026 Embit Labs.</div>
+      </div>
+    </footer>
+
+    <script src="../assets/site.js?v=20260329-4" defer></script>
+  </body>
+</html>
