@@ -1,4 +1,70 @@
 (() => {
+  const header = document.querySelector(".site-header");
+  const nav = document.querySelector(".main-nav");
+  const mobileToggle = document.querySelector(".mobile-menu-toggle");
+
+  const normalizePath = (path) => {
+    if (!path) return "/";
+    let normalized = path.toLowerCase();
+    normalized = normalized.replace(/\/index\.html$/, "/");
+    normalized = normalized.replace(/\.html$/, "");
+    if (normalized.length > 1 && normalized.endsWith("/")) normalized = normalized.slice(0, -1);
+    return normalized || "/";
+  };
+
+  const pagePath = normalizePath(window.location.pathname);
+  const hasSegment = (segment) => new RegExp(`(^|\\/)${segment}(\\/|$)`).test(pagePath);
+  const navSection = (() => {
+    if (hasSegment("docs")) return "documentation";
+    if (hasSegment("about")) return "about";
+    if (hasSegment("contact")) return "contact";
+    if (hasSegment("marketplace") || hasSegment("products") || hasSegment("kits") || hasSegment("templates")) return "marketplace";
+    return null;
+  })();
+
+  if (nav) {
+    nav.querySelectorAll("a.active").forEach((link) => link.classList.remove("active"));
+
+    const navMap = {
+      marketplace: /\/marketplace(\/|$)/,
+      documentation: /\/docs(\/|$)/,
+      about: /\/about(\/|$)/,
+      contact: /\/contact(\/|$)/,
+    };
+
+    if (navSection && navMap[navSection]) {
+      const activeLink = Array.from(nav.querySelectorAll("a")).find((link) => {
+        const href = link.getAttribute("href");
+        if (!href) return false;
+        const linkPath = normalizePath(new URL(href, window.location.href).pathname);
+        return navMap[navSection].test(`${linkPath}/`);
+      });
+      activeLink?.classList.add("active");
+    }
+  }
+
+  const onScroll = () => {
+    if (!header) return;
+    if (window.scrollY > 8) header.classList.add("scrolled");
+    else header.classList.remove("scrolled");
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  if (mobileToggle && nav) {
+    mobileToggle.addEventListener("click", () => {
+      nav.classList.toggle("open");
+      const expanded = nav.classList.contains("open");
+      mobileToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+    });
+    nav.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => {
+        nav.classList.remove("open");
+        mobileToggle.setAttribute("aria-expanded", "false");
+      })
+    );
+  }
+
   const marketRoot = document.getElementById("marketContent");
   const resultCount = document.getElementById("resultCount");
   if (!marketRoot || !resultCount) return;

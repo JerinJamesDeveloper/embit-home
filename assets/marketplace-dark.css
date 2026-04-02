@@ -50,13 +50,30 @@ body.market-dark{
 .logo span{ color:var(--accent); }
 .main-nav ul{ list-style:none; display:flex; gap:6px; margin:0; padding:0; }
 .main-nav a{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
   color:var(--muted);
   text-decoration:none;
   font-size:.88rem; font-weight:500;
-  padding:6px 12px; border-radius:8px;
-  transition:color .2s, background .2s;
+  padding:6px 12px 10px;
+  transition:color .2s;
 }
-.main-nav a:hover, .main-nav a.active{ color:var(--text); background:var(--border); }
+.main-nav a::after{
+  content:"";
+  position:absolute;
+  left:12px;
+  right:12px;
+  bottom:4px;
+  height:2px;
+  border-radius:999px;
+  background:var(--accent);
+  transform:scaleX(0);
+  transform-origin:center;
+  transition:transform .24s ease;
+}
+.main-nav a:hover, .main-nav a.active{ color:var(--text); }
+.main-nav a:hover::after, .main-nav a.active::after{ transform:scaleX(1); }
 .header-right{ margin-left:auto; display:flex; align-items:center; gap:10px; }
 
 /* Buttons */
@@ -324,4 +341,3 @@ body.market-dark{
   .footer-grid{ grid-template-columns:1fr; }
   .promo-banner{ flex-direction:column; text-align:center; }
 }
-

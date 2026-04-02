@@ -21,15 +21,30 @@
       referrerpolicy="no-referrer"
     />
 	    <link rel="stylesheet" href="assets/site.css?v=20260329-4" />
+    <style>
+      .home-page .main-nav ul {
+        gap: 6px;
+      }
+
+      .home-page .main-nav a {
+        color: rgba(17, 24, 39, 0.7);
+        padding: 8px 12px;
+        transition: color 0.2s;
+      }
+
+      .home-page .main-nav a:hover,
+      .home-page .main-nav a.active {
+        color: rgba(17, 24, 39, 0.92);
+      }
+    </style>
   </head>
-  <body>
+  <body class="home-page">
      <header class="site-header">
       <div class="container header-inner">
         <a href="./index.html" class="logo" aria-label="EVLOV home">EV<span>LOV</span></a>
-        <nav class="main-nav" aria-label="Main navigation">
+        <nav class="main-nav" id="mainNav" aria-label="Main navigation">
           <ul>
-            <li><a href="marketplace/index.html" class="active">Marketplace</a></li>
-            <li><a href="docs/index.html">Documentation</a></li>
+            <li><a href="marketplace/index.html">Marketplace</a></li>
             <li><a href="about/index.html">About</a></li>
             <li><a href="contact/index.html">Contact</a></li>
           </ul>
@@ -38,6 +53,9 @@
           <a class="btn btn-outline" href="docs/index.html"><i class="fas fa-book"></i> Docs</a>
           <a class="btn btn-primary" href="docs/index.html#commands"><i class="fas fa-terminal"></i> Get Started</a>
         </div>
+        <button class="mobile-menu-toggle" type="button" aria-label="Toggle menu" aria-controls="mainNav" aria-expanded="false">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
       </div>
     </header>
 
@@ -416,7 +434,6 @@ embit clone --template</code></pre>
           <div class="footer-links">
             <h4>Resources</h4>
             <ul>
-              <li><a href="docs/index.html">Documentation</a></li>
               <li><a href="#api">API Reference</a></li>
               <li><a href="blog/index.html">Blog</a></li>
               <li><a href="community/index.html">Community</a></li>
